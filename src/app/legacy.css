@@ -1,0 +1,132 @@
+/* Legacy styles from the old project */
+
+/* Animation Keyframes from animated.css */
+@keyframes spin1 {
+    0% { transform: rotate(320deg); }
+    100% { transform: rotate(680deg); }
+}
+
+@keyframes spin2 {
+    0% { transform: rotate(320deg); }
+    100% { transform: rotate(680deg); }
+}
+
+@keyframes animate {
+    from { background-position: 0 0; }
+    to { background-position: calc(100% - 100vw) 0; }
+}
+
+/* Car Animation Styles */
+.bg {
+    animation: animate 10s linear infinite;
+    background: url(/front/images/Header-Img.svg) bottom left repeat-x #fff;
+    background-size: cover;
+}
+
+.bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.car {
+    position: relative;
+    height: 120px;
+    width: 329px;
+    bottom: 0;
+    left: 20px;
+}
+
+.car img {
+    width: 262px;
+}
+
+.circle1, .circle2 {
+    width: 53.74px;
+    height: 53.74px;
+    position: relative;
+    top: 0;
+    animation: spin1 .5s infinite linear;
+}
+
+#moving-type-left {
+    position: absolute;
+    top: 66px;
+    left: 60px;
+}
+
+.circle1 {
+    background: url(/front/images/left.svg) no-repeat;
+}
+
+#moving-type-right {
+    position: absolute;
+    top: 66px;
+    left: 260px;
+}
+
+.circle2 {
+    background: url(/front/images/right.svg) no-repeat;
+}
+
+/* WOW.js / Animate.css placeholders */
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+/* Scroll form layout */
+.banner-Text {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.banner-header {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 41.561px;
+    line-height: 39px;
+    color: #000000;
+}
+
+.banner-subheader {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20.7805px;
+    line-height: 22px;
+    color: #606568;
+}
+
+.banner-form {
+    background: #FFFFFF;
+    box-shadow: 0px 2.47387px 27.2125px rgba(0, 0, 0, 0.15);
+    border-radius: 38.9634px;
+}
+
+/* Form Blending */
+.valuation-form-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Legacy overrides for bootstrap compatibility in Next.js */
+.accordion .card h4 {
+    padding-right: 14px;
+    background: url(/images/arrow574345.png) calc(100% - 20px) no-repeat;
+    background-position: right;
+    background-size: 14px;
+    cursor: pointer;
+}
+
+.accordion .card h4.collapsed {
+    background-image: url(/images/arrowDown690037.png);
+}
+
+.userReview {
+    background: #FFFFFF; 
+    box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.08); 
+    border-radius: 20px !important; 
+}

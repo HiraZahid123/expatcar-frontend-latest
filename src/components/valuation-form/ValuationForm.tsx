@@ -47,6 +47,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     const [variants, setVariants] = useState<any[]>([]);
     const [submitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [refNum, setRefNum] = useState("");
 
     const form = useForm<FormData>({
@@ -132,12 +133,14 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
     const onSubmit = async (data: FormData) => {
         setSubmitting(true);
+        setError(null);
         try {
             const res = await api.post('/bookings', data);
             setSuccess(true);
             setRefNum(res.data.data.reference_number);
-        } catch (e) {
+        } catch (e: any) {
             console.error("Error submitting booking", e);
+            setError(e.response?.data?.message || "Something went wrong. Please try again.");
         } finally {
             setSubmitting(false);
         }
@@ -166,7 +169,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                 </div>
                 <button
                     onClick={() => window.location.reload()}
-                    className="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition"
+                    className="w-full bg-[#f24026] text-white font-bold py-4 rounded-xl hover:bg-[#d6351f] transition"
                 >
                     Valuate Another Car
                 </button>
@@ -179,7 +182,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
             {/* Progress Bar */}
             <div className="h-2 w-full bg-gray-100 flex">
                 <motion.div
-                    className="h-full bg-blue-600"
+                    className="h-full bg-[#f24026]"
                     initial={{ width: "33.33%" }}
                     animate={{ width: step === 1 ? "33.33%" : step === 2 ? "66.66%" : "100%" }}
                 />
@@ -195,6 +198,12 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                     </p>
                 </header>
 
+                {error && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm font-medium animate-in fade-in slide-in-from-top-2">
+                        {error}
+                    </div>
+                )}
+
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <AnimatePresence mode="wait">
                         {step === 1 && (
@@ -208,7 +217,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-gray-800 font-bold">
-                                            <Hash className="w-4 h-4 text-blue-500" /> Year
+                                            <Hash className="w-4 h-4 text-[#f24026]" /> Year
                                         </label>
                                         <select
                                             {...form.register('year')}
@@ -221,7 +230,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-gray-800 font-bold">
-                                            <Search className="w-4 h-4 text-blue-500" /> Make
+                                            <Search className="w-4 h-4 text-[#f24026]" /> Make
                                         </label>
                                         <select
                                             {...form.register('make_id')}
@@ -235,7 +244,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-800 font-bold">
-                                        <Car className="w-4 h-4 text-blue-500" /> Model
+                                        <Car className="w-4 h-4 text-[#f24026]" /> Model
                                     </label>
                                     <select
                                         {...form.register('model_id')}
@@ -248,7 +257,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-800 font-bold">
-                                        <Hash className="w-4 h-4 text-blue-500" /> Variant
+                                        <Hash className="w-4 h-4 text-[#f24026]" /> Variant
                                     </label>
                                     <select
                                         {...form.register('variant_id')}
@@ -271,7 +280,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                             >
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-800 font-bold">
-                                        <Search className="w-4 h-4 text-blue-500" /> Mileage (KM)
+                                        <Search className="w-4 h-4 text-[#f24026]" /> Mileage (KM)
                                     </label>
                                     <input
                                         type="number"
@@ -294,7 +303,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                             >
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-800 font-bold">
-                                        <User className="w-4 h-4 text-blue-500" /> Full Name
+                                        <User className="w-4 h-4 text-[#f24026]" /> Full Name
                                     </label>
                                     <input
                                         {...form.register('name')}
@@ -305,7 +314,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-800 font-bold">
-                                        <Phone className="w-4 h-4 text-blue-500" /> Phone Number (UAE)
+                                        <Phone className="w-4 h-4 text-[#f24026]" /> Phone Number (UAE)
                                     </label>
                                     <input
                                         {...form.register('phone')}
@@ -316,7 +325,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-800 font-bold">
-                                        <Mail className="w-4 h-4 text-blue-500" /> Email Address
+                                        <Mail className="w-4 h-4 text-[#f24026]" /> Email Address
                                     </label>
                                     <input
                                         {...form.register('email')}
@@ -344,7 +353,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                 type="button"
                                 onClick={nextStep}
                                 disabled={step === 1 && !watch('variant_id')}
-                                className="flex-1 bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
+                                className="flex-1 bg-[#f24026] text-white py-4 rounded-xl font-bold hover:bg-[#d6351f] disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 shadow-lg shadow-red-500/30"
                             >
                                 Continue <ChevronRight className="w-5 h-5" />
                             </button>
@@ -352,7 +361,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                             <button
                                 type="submit"
                                 disabled={submitting}
-                                className="flex-1 bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 disabled:opacity-50 transition flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
+                                className="flex-1 bg-[#f24026] text-white py-4 rounded-xl font-bold hover:bg-[#d6351f] disabled:opacity-50 transition flex items-center justify-center gap-2 shadow-lg shadow-red-500/30"
                             >
                                 {submitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Get Instant Valuation"}
                             </button>

@@ -24,3 +24,28 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Header migrated styles */
+.rotate-180 { transform: rotate(180deg); }
+.transition-transform { transition: transform 0.2s; }
+
+@media (max-width: 991px) {
+    .header-main .sub-menu { 
+        position: static !important; 
+        width: 100% !important; 
+        box-shadow: none !important; 
+    }
+    .header-main .navbar-collapse { 
+        padding-top: 10px; 
+    }
+}
+
+/* Footer migrated styles */
+.footer-bg-dark { background-color: #1a1a1a !important; }
+.bg-light-theme-2 { background-color: #fdfdfd; }
+.footer-links a:hover { opacity: 1 !important; color: #F24026 !important; }
+.footer-social-global ul { padding: 0; }
+.footer-social-global li img:hover { 
+    transform: scale(1.1); 
+    transition: transform 0.2s; 
+}

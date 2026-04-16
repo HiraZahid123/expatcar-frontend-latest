@@ -20,6 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title: `Sell My ${make.name} in UAE | Instant Valuation`,
         description: `Want to sell your ${make.name}? Get a free instant valuation for your ${make.name} in Dubai & UAE. Best prices, instant cash, 100% transparent.`,
       };
+    } else if (type === 'location') {
+      const { branch } = res.data.data;
+      return {
+        title: `Sell My Car in ${branch.name} | Instant Cash in 30 Minutes`,
+        description: `Looking to sell your car in ${branch.name}? We buy any car for cash. Get a free valuation, doorstep inspection, and instant payment today.`,
+      };
     } else {
       return {
         title: `Sell My ${make.name} ${model.name} in UAE | Best Price Guaranteed`,
@@ -63,7 +69,7 @@ export default async function DynamicCarPage({ params }: { params: Promise<{ slu
     );
   }
 
-  const { type, make, model, models } = data;
+  const { type, make, model, models, branch } = data;
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -75,20 +81,30 @@ export default async function DynamicCarPage({ params }: { params: Promise<{ slu
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1">
               <div className="flex items-center gap-4 mb-6">
-                {make.logo_url && (
+                {type !== 'location' && make.logo_url && (
                   <img src={make.logo_url} alt={make.name} className="w-16 h-16 object-contain" />
+                )}
+                {type === 'location' && (
+                  <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white">
+                    <MapPin className="w-8 h-8" />
+                  </div>
                 )}
                 <div>
                   <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
-                    Sell My {type === 'make' ? <span className="text-blue-600">{make.name}</span> : <>{make.name} <span className="text-blue-600">{model.name}</span></>}
+                    {type === 'location' 
+                      ? <>Sell My Car in <span className="text-blue-600">{branch.name}</span></>
+                      : <>Sell My {type === 'make' ? <span className="text-blue-600">{make.name}</span> : <>{make.name} <span className="text-blue-600">{model.name}</span></>}</>
+                    }
                   </h1>
                 </div>
               </div>
 
               <p className="text-xl text-gray-600 mb-8 max-w-xl leading-relaxed">
-                {type === 'make'
-                  ? `We buy any ${make.name} in the UAE. Get a guaranteed best market price with immediate payment.`
-                  : `Got a ${make.name} ${model.name}? We are currently offering premium prices for this model in Dubai. Get your valuation now.`
+                {type === 'location'
+                  ? `Need to sell your car in ${branch.name}? We offer the fastest car buying service in the city. Best price, zero hassle.`
+                  : type === 'make'
+                    ? `We buy any ${make.name} in the UAE. Get a guaranteed best market price with immediate payment.`
+                    : `Got a ${make.name} ${model.name}? We are currently offering premium prices for this model in Dubai. Get your valuation now.`
                 }
               </p>
 
@@ -112,7 +128,7 @@ export default async function DynamicCarPage({ params }: { params: Promise<{ slu
               <div className="relative">
                 <div className="absolute -inset-4 bg-blue-100/50 rounded-[3rem] blur-2xl -z-10" />
                 <ValuationForm
-                  initialMakeId={make.id.toString()}
+                  initialMakeId={type !== 'location' ? make.id.toString() : undefined}
                   initialModelId={type === 'model' ? model.id.toString() : undefined}
                 />
               </div>
@@ -144,6 +160,24 @@ export default async function DynamicCarPage({ params }: { params: Promise<{ slu
                 ))}
               </div>
             </>
+          ) : type === 'location' ? (
+            <div className="max-w-4xl mx-auto bg-white p-12 rounded-[2.5rem] border border-gray-100 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-blue-600" />
+              <h2 className="text-3xl font-extrabold text-gray-900 mb-6">Our Services in {branch.name}</h2>
+              <div className="prose prose-lg text-gray-600 max-w-none">
+                <p>
+                  As an expert car buyer in <strong>{branch.name}</strong>, we offer a seamless selling experience for residents and expats alike. 
+                  Whether you are in the city center or surrounding areas, our team can come to your doorstep for a free inspection.
+                </p>
+                <div className="mt-8 p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-blue-600" /> Site Location
+                    </h3>
+                    <p className="text-gray-600">{branch.address || `Serving all of ${branch.name}`}</p>
+                    <p className="mt-2 font-bold text-blue-600">{branch.phone}</p>
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="max-w-4xl mx-auto bg-white p-12 rounded-[2.5rem] border border-gray-100 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-2 h-full bg-blue-600" />

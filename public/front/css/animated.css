@@ -1,0 +1,18 @@
+.bg{animation:animate 10s linear infinite}
+.circle1{animation:spin1 .5s infinite linear;-webkit-animation:spin1 1s infinite linear}
+@keyframes spin1{0%{-moz-transform:rotate(320deg);-webkit-transform:rotate(320deg);-o-transform:rotate(320deg);-ms-transform:rotate(320deg)}
+100%{-moz-transform:rotate(640deg);-webkit-transform:rotate(640deg);-o-transform:rotate(680deg);-ms-transform:rotate(680deg)}
+}
+@-webkit-keyframes spin1{0%{-moz-transform:rotate(320deg);-webkit-transform:rotate(320deg);-o-transform:rotate(320deg);-ms-transform:rotate(320deg)}
+100%{-moz-transform:rotate(680deg);-webkit-transform:rotate(680deg);-o-transform:rotate(680deg);-ms-transform:rotate(680deg)}
+}
+.circle2{animation:spin1 .5s infinite linear;-webkit-animation:spin1 1s infinite linear}
+@keyframes spin2{0%{-moz-transform:rotate(320deg);-webkit-transform:rotate(320deg);-o-transform:rotate(320deg);-ms-transform:rotate(320deg)}
+100%{-moz-transform:rotate(640deg);-webkit-transform:rotate(640deg);-o-transform:rotate(680deg);-ms-transform:rotate(680deg)}
+}
+@-webkit-keyframes spin2{0%{-moz-transform:rotate(320deg);-webkit-transform:rotate(320deg);-o-transform:rotate(320deg);-ms-transform:rotate(320deg)}
+100%{-moz-transform:rotate(680deg);-webkit-transform:rotate(680deg);-o-transform:rotate(680deg);-ms-transform:rotate(680deg)}
+}
+@keyframes animate{from{background-position:0 0;}
+to{background-position:calc(100% - 100vw) 0;}
+}

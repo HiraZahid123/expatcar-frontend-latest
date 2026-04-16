@@ -3,12 +3,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Car, Hash, X, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import api from '@/lib/api';
-import { cn } from '@/lib/utils';
+import { MeiliSearch } from 'meilisearch';
+
+const meiliClient = new MeiliSearch({
+    host: process.env.NEXT_PUBLIC_MEILI_HOST || 'http://localhost:7700',
+    apiKey: process.env.NEXT_PUBLIC_MEILI_SEARCH_KEY || 'masterKey',
+});
+
+const variantsIndex = meiliClient.index('variants');
+
+interface SearchResult {
+    id: number;
+    name: string;
+    year: number;
+    make: string;
+    model: string;
+    body_type: string;
+    engine: string;
+    transmission: string;
+}
 
 export default function QuickSearch() {
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState<any[]>([]);
+    const [results, setResults] = useState<SearchResult[]>([]);
     const [loading, setLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -30,11 +47,30 @@ export default function QuickSearch() {
         }
         setLoading(true);
         try {
-            const res = await api.get(`/search?q=${q}`);
-            setResults(res.data.data);
+            const result = await variantsIndex.search<SearchResult>(q, {
+                limit: 10,
+                attributesToRetrieve: ['id', 'name', 'year', 'make', 'model', 'body_type', 'engine', 'transmission'],
+            });
+            // Format each hit to have a readable full name
+            const formatted = result.hits.map(hit => ({
+                ...hit,
+                name: `${hit.year} ${hit.make} ${hit.model} ${hit.name}`,
+            }));
+            setResults(formatted);
             setIsOpen(true);
         } catch (e) {
-            console.error("Search error", e);
+            console.error("Meilisearch error, falling back to API", e);
+            // Fallback to Laravel API search if Meilisearch is unavailable
+            try {
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001/api/v1'}/search?q=${q}`
+                );
+                const data = await res.json();
+                setResults(data.data || []);
+                setIsOpen(true);
+            } catch (apiFallbackError) {
+                console.error("API fallback also failed", apiFallbackError);
+            }
         } finally {
             setLoading(false);
         }
@@ -95,7 +131,6 @@ export default function QuickSearch() {
                                         onClick={() => {
                                             const makeSlug = car.make.toLowerCase().replace(/\s+/g, '-');
                                             const modelSlug = car.model.toLowerCase().replace(/\s+/g, '-');
-                                            // Redirect to model-specific page
                                             window.location.href = `/sell-my-${makeSlug}-${modelSlug}`;
                                             setIsOpen(false);
                                         }}
@@ -108,12 +143,16 @@ export default function QuickSearch() {
                                                 {car.name}
                                             </h4>
                                             <div className="flex items-center gap-3">
-                                                <span className="text-xs font-semibold px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md uppercase tracking-wider">
-                                                    {car.body_type}
-                                                </span>
-                                                <span className="text-sm text-gray-600 font-medium">
-                                                    {car.engine}
-                                                </span>
+                                                {car.body_type && (
+                                                    <span className="text-xs font-semibold px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md uppercase tracking-wider">
+                                                        {car.body_type}
+                                                    </span>
+                                                )}
+                                                {car.engine && (
+                                                    <span className="text-sm text-gray-600 font-medium">
+                                                        {car.engine}
+                                                    </span>
+                                                )}
                                             </div>
                                         </div>
                                         <div className="opacity-0 group-hover:opacity-100 transition-opacity">
@@ -126,7 +165,7 @@ export default function QuickSearch() {
                             </div>
                         </div>
                         <div className="p-4 bg-gray-50 border-t border-gray-100 text-center">
-                            <p className="text-xs text-gray-600 font-bold">Showing top {results.length} matches from 528k+ variants</p>
+                            <p className="text-xs text-gray-600 font-bold">Showing top {results.length} matches from 528k+ variants · Powered by Meilisearch</p>
                         </div>
                     </motion.div>
                 )}

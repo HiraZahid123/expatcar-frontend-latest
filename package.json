@@ -11,14 +11,18 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "^5.90.21",
+    "@types/leaflet": "^1.9.21",
     "axios": "^1.13.6",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.3",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.576.0",
+    "meilisearch": "^0.55.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.2",
+    "react-leaflet": "^5.0.0",
     "tailwind-merge": "^3.5.0",
     "zod": "^4.3.6"
   },
