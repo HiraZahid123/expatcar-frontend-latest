@@ -15,7 +15,9 @@ import {
     User,
     Phone,
     Mail,
-    Search
+    Search,
+    Copy,
+    ClipboardCheck
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
@@ -49,6 +51,8 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [refNum, setRefNum] = useState("");
+    const [copied, setCopied] = useState(false);
+    const [utmData, setUtmData] = useState<Record<string, string>>({});
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -72,6 +76,14 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
     useEffect(() => {
         fetchYears();
+        // Capture UTM params from URL on mount
+        const params = new URLSearchParams(window.location.search);
+        const utm: Record<string, string> = {};
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(key => {
+            const val = params.get(key);
+            if (val) utm[key] = val;
+        });
+        if (Object.keys(utm).length) setUtmData(utm);
     }, []);
 
     useEffect(() => {
@@ -135,7 +147,10 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
         setSubmitting(true);
         setError(null);
         try {
-            const res = await api.post('/bookings', data);
+            const res = await api.post('/bookings', {
+                ...data,
+                ...(Object.keys(utmData).length ? { utm_data: utmData } : {}),
+            });
             setSuccess(true);
             setRefNum(res.data.data.reference_number);
         } catch (e: any) {
@@ -155,6 +170,12 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
 
     const prevStep = () => setStep(prev => prev - 1);
 
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(refNum);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     if (success) {
         return (
             <div className="bg-white p-8 rounded-2xl shadow-2xl text-center max-w-md mx-auto border border-green-50">
@@ -163,9 +184,23 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Valuation Submitted!</h2>
                 <p className="text-gray-600 mb-6">Our experts will call you within 15 minutes.</p>
-                <div className="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300 mb-8">
+                <div className="bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300 mb-8 relative group">
                     <span className="text-xs uppercase tracking-widest text-gray-600 font-bold block mb-1">Reference Number</span>
-                    <span className="text-xl font-mono font-bold text-blue-600">{refNum}</span>
+                    <div className="flex items-center justify-center gap-3">
+                        <span className="text-xl font-mono font-bold text-[#f24026] transition-all">{refNum}</span>
+                        <button
+                            onClick={copyToClipboard}
+                            className={cn(
+                                "p-2 rounded-lg transition-all duration-200 flex items-center justify-center",
+                                copied 
+                                    ? "bg-green-100 text-green-600 scale-110" 
+                                    : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 active:scale-95"
+                            )}
+                            title="Copy to clipboard"
+                        >
+                            {copied ? <ClipboardCheck className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                        </button>
+                    </div>
                 </div>
                 <button
                     onClick={() => window.location.reload()}
@@ -221,7 +256,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                         </label>
                                         <select
                                             {...form.register('year')}
-                                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                         >
                                             <option value="">Select Year</option>
                                             {years.map(y => <option key={y} value={y}>{y}</option>)}
@@ -234,7 +269,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                         </label>
                                         <select
                                             {...form.register('make_id')}
-                                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                         >
                                             <option value="">Select Make</option>
                                             {makes.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
@@ -248,7 +283,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     </label>
                                     <select
                                         {...form.register('model_id')}
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                     >
                                         <option value="">Select Model</option>
                                         {models.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
@@ -261,7 +296,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     </label>
                                     <select
                                         {...form.register('variant_id')}
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                     >
                                         <option value="">Select Variant</option>
                                         {variants.map(v => <option key={v.id} value={v.id}>{v.name} ({v.engine})</option>)}
@@ -286,7 +321,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                         type="number"
                                         {...form.register('mileage')}
                                         placeholder="e.g. 24000"
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                     />
                                     {errors.mileage && <p className="text-xs text-red-500">{errors.mileage.message}</p>}
                                 </div>
@@ -308,7 +343,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     <input
                                         {...form.register('name')}
                                         placeholder="Expat Car Buyer"
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                     />
                                 </div>
 
@@ -319,7 +354,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     <input
                                         {...form.register('phone')}
                                         placeholder="05X XXX XXXX"
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                     />
                                 </div>
 
@@ -330,7 +365,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     <input
                                         {...form.register('email')}
                                         placeholder="name@example.com"
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-gray-900"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
                                     />
                                 </div>
                             </motion.div>

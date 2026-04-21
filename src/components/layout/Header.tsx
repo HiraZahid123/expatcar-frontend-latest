@@ -1,127 +1,283 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
-const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
+/* ─── Navigation Data ────────────────────────────────────────── */
+const navItems = [
+    {
+        id: 'sell-car',
+        label: 'SELL CAR',
+        children: [
+            { label: 'Sell Cars', href: '/' },
+            { label: 'We Buy Any Car', href: '/' },
+            { label: 'We Cash Any Car', href: '/' },
+        ],
+    },
+    {
+        id: 'by-city',
+        label: 'BY CITY',
+        children: [
+            { label: 'Sell Car in Dubai', href: '/sell-my-dubai-al-quoz' },
+            { label: 'Sell Car in Sharjah', href: '/sell-my-sharjah' },
+            { label: 'Sell Car in Abu Dhabi', href: '/sell-my-abu-dhabi' },
+        ],
+    },
+    {
+        id: 'by-model',
+        label: 'BY MODEL',
+        children: [
+            'Audi', 'BMW', 'Chevrolet', 'Ford', 'Honda',
+            'Lexus', 'Jeep', 'Mitsubishi', 'Nissan', 'Porsche',
+            'Toyota', 'Volkswagen',
+        ].map(m => ({ label: `Sell ${m}`, href: `/sell-my-${m.toLowerCase()}` })),
+    },
+    { id: 'evaluate', label: 'EVALUATE YOUR CAR', href: '/' },
+    { id: 'about',    label: 'ABOUT US',          href: '/about-us' },
+    { id: 'blog',     label: 'BLOGS',             href: '/blog' },
+];
 
-    const toggleSubMenu = (id: string, e: React.MouseEvent) => {
-        e.preventDefault();
-        setActiveSubMenu(activeSubMenu === id ? null : id);
-    };
+/* ─── Icons ──────────────────────────────────────────────────── */
+const ChevronDown = ({ open }: { open: boolean }) => (
+    <svg
+        fill="currentColor"
+        width="9"
+        height="9"
+        viewBox="0 0 330 330"
+        className={`flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+    >
+        <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
+    </svg>
+);
+
+const PhoneIcon = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" className="flex-shrink-0">
+        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02L6.62 10.79z" />
+    </svg>
+);
+
+const WhatsAppIcon = () => (
+    <svg viewBox="0 0 32 32" fill="currentColor" width="17" height="17" className="flex-shrink-0">
+        <path d="M16 0C7.163 0 0 7.163 0 16c0 2.823.736 5.476 2.023 7.782L0 32l8.418-2.007A15.938 15.938 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.258 22.337c-.343.962-2.01 1.837-2.753 1.95-.743.113-1.668.16-2.69-.168-.62-.2-1.415-.468-2.434-.916-4.278-1.845-7.075-6.105-7.29-6.388-.213-.283-1.745-2.315-1.745-4.418 0-2.103 1.103-3.136 1.494-3.563.391-.427.85-.534 1.133-.534.284 0 .567.002.815.015.262.014.613-.099.96.733.355.85 1.207 2.95 1.314 3.164.107.213.178.463.035.74-.143.278-.213.45-.425.693-.213.242-.447.541-.638.726-.213.2-.434.417-.187.817.248.4 1.1 1.812 2.362 2.937 1.624 1.447 2.995 1.893 3.405 2.107.41.213.65.178.89-.107.24-.284 1.026-1.194 1.3-1.604.272-.41.543-.342.915-.213.37.13 2.36 1.113 2.763 1.315.4.2.666.3.764.467.1.167.1.962-.243 1.922z"/>
+    </svg>
+);
+
+/* ─── Header Component ───────────────────────────────────────── */
+export default function Header() {
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [activeMenu, setActiveMenu] = useState<string | null>(null);
+    const [scrolled, setScrolled] = useState(false);
+    const navRef = useRef<HTMLDivElement>(null);
+
+    /* close dropdown on outside click */
+    useEffect(() => {
+        const handler = (e: MouseEvent) => {
+            if (navRef.current && !navRef.current.contains(e.target as Node)) {
+                setActiveMenu(null);
+            }
+        };
+        document.addEventListener('mousedown', handler);
+        return () => document.removeEventListener('mousedown', handler);
+    }, []);
+
+    /* shadow on scroll */
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    const toggle = (id: string) =>
+        setActiveMenu(prev => (prev === id ? null : id));
 
     return (
-        <div className="header-main bg-white d-block position-relative">
-            <div className="header">
-                <div className="header-section">
-                    <div className="container px-4 px-md-3">
-                        <div className="row align-items-center py-2">
-                            <div className="col-lg-3 col-9">
-                                <Link href="/" className="d-inline-block logo">
-                                    <img 
-                                        width={238} 
-                                        height={38} 
-                                        src="/front/images/logo.webp" 
-                                        alt="expatcarbuyers" 
-                                        className="img-fluid logocompany"
-                                    />
-                                </Link>
-                            </div>
+        <header
+            className="site-header"
+            style={{ boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,.12)' : '0 2px 8px rgba(0,0,0,.06)' }}
+        >
+            {/* ══ TOP BAR: Logo + Contact Buttons ══ */}
+            <div className="bg-white px-4 md:px-6">
+                <div className="max-w-7xl mx-auto flex items-center justify-between" style={{ minHeight: '72px' }}>
 
-                            <div className="col-lg-9 col-3 text-end">
-                                <div className="btn btn-danger custom-rounded ml-3 ms-3 px-3 py-2 btn-phone d-none d-lg-inline-block">
-                                    <a href="tel:+971561774555" className="header-phone text-white text-decoration-none d-flex align-items-center">
-                                        <img src="/front/images/phone.webp" alt="phone" className="me-2 mr-2" width={18} height={18} />
-                                        +971 56 1774555
-                                    </a>
-                                </div>
+                    {/* Logo */}
+                    <Link href="/" className="flex-shrink-0" aria-label="ExpatCarBuyers Home">
+                        <img
+                            src="/front/images/logo.webp"
+                            alt="ExpatCarBuyers"
+                            width={220}
+                            height={36}
+                            className="h-9 w-auto"
+                        />
+                    </Link>
 
-                                <button 
-                                    className="custom-nav-button navbar-toggler d-lg-none" 
-                                    type="button"
-                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                >
-                                    <span className="navbar-toggler-icon"></span>
-                                </button>
-                            </div>
-                        </div>
+                    {/* Desktop: WhatsApp + Phone */}
+                    <div className="hidden lg:flex items-center gap-3">
+                        <a
+                            href="https://wa.me/971561774555"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            id="whatsapp-header-btn"
+                            className="header-contact-btn whatsapp-btn"
+                        >
+                            <WhatsAppIcon />
+                            <span>Click to Chat</span>
+                        </a>
+                        <a
+                            href="tel:+971561774555"
+                            id="phone-header-btn"
+                            className="header-contact-btn phone-btn"
+                        >
+                            <PhoneIcon />
+                            <span>+971 56 1774555</span>
+                        </a>
+                    </div>
+
+                    {/* Mobile: WhatsApp icon + Hamburger */}
+                    <div className="flex lg:hidden items-center gap-3">
+                        <a
+                            href="https://wa.me/971561774555"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-9 h-9 rounded-full flex items-center justify-center text-white"
+                            style={{ background: '#25d366' }}
+                            aria-label="WhatsApp Chat"
+                        >
+                            <WhatsAppIcon />
+                        </a>
+                        <button
+                            className="flex flex-col justify-center gap-[5px] p-2 rounded"
+                            onClick={() => setMobileOpen(v => !v)}
+                            aria-label="Toggle menu"
+                            aria-expanded={mobileOpen}
+                        >
+                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all duration-300 origin-center ${mobileOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
+                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all duration-300 origin-center ${mobileOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+                        </button>
                     </div>
                 </div>
-
-                <nav id="custom-navbar" className={`navbar navbar-expand-lg navbar-light ${isMenuOpen ? 'show' : ''}`}>
-                    <div className="container">
-                        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarNav">
-                            <ul className="navbar-nav w-100 flex-column flex-lg-row">
-                                <li className="nav-item position-relative">
-                                    <a 
-                                        className="nav-link open-sub-menu d-flex align-items-center justify-content-between" 
-                                        href="#" 
-                                        onClick={(e) => toggleSubMenu('sell-car', e)}
-                                    >
-                                        SELL CAR
-                                        <svg fill="#fff" height="14px" width="12px" version="1.1" viewBox="0 0 330 330" className={`ms-2 transition-transform ${activeSubMenu === 'sell-car' ? 'rotate-180' : ''}`}>
-                                            <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
-                                        </svg>
-                                    </a>
-                                    <div className="sub-menu" style={{ display: activeSubMenu === 'sell-car' ? 'block' : 'none' }}>
-                                        <Link className="dropdown-item" href="/sell-cars">Sell Cars</Link>
-                                        <Link className="dropdown-item" href="/we-buy-any-car">We Buy Any Car</Link>
-                                        <Link className="dropdown-item" href="/we-cash-any-car">We Cash Any Car</Link>
-                                    </div>
-                                </li>
-                                <li className="nav-item position-relative">
-                                    <a 
-                                        className="nav-link open-sub-menu d-flex align-items-center justify-content-between" 
-                                        href="#" 
-                                        onClick={(e) => toggleSubMenu('by-city', e)}
-                                    >
-                                        BY CITY
-                                        <svg fill="#fff" height="14px" width="12px" viewBox="0 0 330 330" className={`ms-2 transition-transform ${activeSubMenu === 'by-city' ? 'rotate-180' : ''}`}>
-                                            <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
-                                        </svg>
-                                    </a>
-                                    <div className="sub-menu" style={{ display: activeSubMenu === 'by-city' ? 'block' : 'none' }}>
-                                        <Link className="dropdown-item" href="/sell-cars/dubai">Sell Cars In Dubai</Link>
-                                        <Link className="dropdown-item" href="/sell-car-abu-dhabi">Sell Cars In Abu-Dubai</Link>
-                                        <Link className="dropdown-item" href="/sell-cars/sharjah">Sell Cars In Sharjah</Link>
-                                    </div>
-                                </li>
-                                <li className="nav-item position-relative">
-                                    <a 
-                                        className="nav-link open-sub-menu d-flex align-items-center justify-content-between" 
-                                        href="#" 
-                                        onClick={(e) => toggleSubMenu('by-model', e)}
-                                    >
-                                        BY MODEL
-                                        <svg fill="#fff" height="14px" width="12px" viewBox="0 0 330 330" className={`ms-2 transition-transform ${activeSubMenu === 'by-model' ? 'rotate-180' : ''}`}>
-                                            <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
-                                        </svg>
-                                    </a>
-                                    <div className="sub-menu scrollable-sub-menu" style={{ display: activeSubMenu === 'by-model' ? 'block' : 'none', maxHeight: '300px', overflowY: 'auto' }}>
-                                        {['Audi', 'BMW', 'Chevrolet', 'Ford', 'Honda', 'Lexus', 'Jeep', 'Nissan', 'Porsche', 'Mitsubishi', 'Toyota', 'Volkswagen'].map(model => (
-                                            <Link key={model} className="dropdown-item" href={`/sell-cars/${model.toLowerCase()}`}>Sell {model}</Link>
-                                        ))}
-                                    </div>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" href="/sell-cars/evaluate-your-car">EVALUATE YOUR CAR</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" href="/about-us">ABOUT US</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" href="/blog">BLOGS</Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
             </div>
-        </div>
-    );
-};
 
-export default Header;
+            {/* ══ DESKTOP NAV BAR ══ */}
+            <nav className="nav-bar hidden lg:block" ref={navRef} aria-label="Main Navigation">
+                <div className="max-w-7xl mx-auto px-4">
+                    <ul className="flex items-stretch">
+                        {navItems.map(item => (
+                            <li key={item.id} className="relative">
+                                {item.children ? (
+                                    <>
+                                        <button
+                                            id={`nav-${item.id}`}
+                                            className="nav-link-item"
+                                            onClick={() => toggle(item.id)}
+                                            aria-haspopup="true"
+                                            aria-expanded={activeMenu === item.id}
+                                        >
+                                            {item.label}
+                                            <ChevronDown open={activeMenu === item.id} />
+                                        </button>
+                                        {activeMenu === item.id && (
+                                            <div className={`sub-menu ${item.id === 'by-model' ? 'sub-menu--tall' : ''}`}>
+                                                {item.children.map(child => (
+                                                    <Link
+                                                        key={child.label}
+                                                        href={child.href}
+                                                        className="sub-menu-link"
+                                                        onClick={() => setActiveMenu(null)}
+                                                    >
+                                                        {child.label}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </>
+                                ) : (
+                                    <Link href={item.href!} className="nav-link-item">
+                                        {item.label}
+                                    </Link>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </nav>
+
+            {/* ══ MOBILE MENU ══ */}
+            <div
+                className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0'}`}
+                style={{ background: '#f24026' }}
+            >
+                <div className="px-4 py-3 border-t border-[#f84429]">
+                    {navItems.map(item => (
+                        <div key={item.id}>
+                            {item.children ? (
+                                <>
+                                    <button
+                                        className="w-full flex items-center justify-between text-white font-bold py-3.5 text-sm tracking-widest border-b border-white/10"
+                                        onClick={() => toggle(item.id)}
+                                        aria-expanded={activeMenu === item.id}
+                                    >
+                                        {item.label}
+                                        <ChevronDown open={activeMenu === item.id} />
+                                    </button>
+                                    <div className={`overflow-hidden transition-all duration-200 ${activeMenu === item.id ? 'max-h-72' : 'max-h-0'}`}>
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl my-1.5 overflow-y-auto max-h-56">
+                                            {item.children.map(child => (
+                                                <Link
+                                                    key={child.label}
+                                                    href={child.href}
+                                                    className="block px-5 py-3 text-white text-sm border-b border-white/10 last:border-0 hover:bg-white/10 transition-colors"
+                                                    onClick={() => { setMobileOpen(false); setActiveMenu(null); }}
+                                                >
+                                                    {child.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <Link
+                                    href={item.href!}
+                                    className="block text-white font-bold py-3.5 text-sm tracking-widest border-b border-white/10 hover:text-white/80 transition-colors"
+                                    onClick={() => setMobileOpen(false)}
+                                >
+                                    {item.label}
+                                </Link>
+                            )}
+                        </div>
+                    ))}
+
+                    {/* Mobile contact buttons */}
+                    <div className="flex gap-3 mt-4 pb-2">
+                        <a
+                            href="https://wa.me/971561774555"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-2 text-white font-bold py-3 rounded-xl text-sm"
+                            style={{ background: '#25d366' }}
+                        >
+                            <WhatsAppIcon /> WhatsApp
+                        </a>
+                        <a
+                            href="tel:+971561774555"
+                            className="flex-1 flex items-center justify-center gap-2 bg-white text-[#f24026] font-bold py-3 rounded-xl text-sm"
+                        >
+                            <span style={{ color: '#f24026' }}><PhoneIcon /></span>
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {/* ══ Mobile sticky floating phone button ══ */}
+            <a
+                href="tel:+971561774555"
+                className="lg:hidden fixed bottom-6 right-5 z-[999] w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl"
+                style={{ background: '#f24026', boxShadow: '0 4px 20px rgba(242,64,38,.5)' }}
+                aria-label="Call us"
+            >
+                <PhoneIcon />
+            </a>
+        </header>
+    );
+}

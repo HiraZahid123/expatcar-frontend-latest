@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import "./legacy.css";
 
 import Providers from "@/components/Providers";
 import Header from "@/components/layout/Header";
@@ -20,30 +19,26 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
-                <link rel="stylesheet" href="/front/css/cdns/googleapi.css" />
-                <link rel="stylesheet" href="/css/app.css" />
-                <link rel="stylesheet" href="/css/style_minify.css" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
                 <link rel="stylesheet" href="/font-awesome/css/all.min.css" />
             </head>
             <body className="antialiased">
                 <Providers>
                     <Header />
-                    <main id="home-content">
+                    <main>
                         {children}
                     </main>
                     <Footer />
                 </Providers>
 
-                {/* Legacy Scripts for Animations */}
                 <Script src="/front/js/wow.min.js" strategy="afterInteractive" />
                 <Script id="init-wow" strategy="afterInteractive">
                     {`
                         window.addEventListener('load', function() {
                             if (typeof WOW !== 'undefined') {
-                                new WOW({
-                                    animateClass: 'animated',
-                                    offset: 100
-                                }).init();
+                                new WOW({ animateClass: 'animated', offset: 100 }).init();
                             }
                         });
                     `}

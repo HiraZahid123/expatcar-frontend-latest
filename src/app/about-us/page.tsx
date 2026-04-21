@@ -17,7 +17,7 @@ const values = [
     icon: Target,
     title: 'Transparency',
     description: 'No hidden fees or complex paperwork. We provide clear valuations and instant payments.',
-    color: 'bg-blue-50 text-blue-600',
+    color: 'bg-[#FCF5F2] text-[#f24026]',
   },
   {
     icon: ShieldCheck,
@@ -44,11 +44,11 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 overflow-hidden bg-gray-900 text-white">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-600/10 -skew-x-12 translate-x-1/4" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[#f24026]/10 -skew-x-12 translate-x-1/4" />
         <div className="container mx-auto px-6 relative">
           <div className="max-w-3xl">
             <h1 className="text-5xl lg:text-6xl font-extrabold mb-8 tracking-tight">
-              Reinventing How You <span className="text-blue-500">Sell Your Car</span>
+              Reinventing How You <span className="text-[#f24026]">Sell Your Car</span>
             </h1>
             <p className="text-xl text-gray-400 leading-relaxed mb-12">
               At ExpatCarBuyers, we believe selling your car should be as simple as buying a cup of coffee. No haggling, no time-wasters, just instant cash in your pocket.
@@ -56,7 +56,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, i) => (
                 <div key={i}>
-                  <p className="text-3xl font-extrabold text-blue-500 mb-1">{stat.value}</p>
+                  <p className="text-3xl font-extrabold text-[#f24026] mb-1">{stat.value}</p>
                   <p className="text-sm font-medium text-gray-500 uppercase tracking-widest">{stat.label}</p>
                 </div>
               ))}
@@ -77,9 +77,9 @@ export default function AboutPage() {
                     className="w-full h-full object-cover"
                  />
               </div>
-              <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-blue-600 rounded-[2.5rem] flex flex-col items-center justify-center p-8 text-white shadow-xl">
+              <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-[#f24026] rounded-[2.5rem] flex flex-col items-center justify-center p-8 text-white shadow-xl">
                  <p className="text-4xl font-extrabold mb-2">100%</p>
-                 <p className="text-center font-bold text-blue-100">Commitment to transparency and fair pricing</p>
+                 <p className="text-center font-bold text-[#FFD0C9]">Commitment to transparency and fair pricing</p>
               </div>
             </div>
             <div>
@@ -124,17 +124,17 @@ export default function AboutPage() {
       {/* Call to Action */}
       <section className="py-24">
         <div className="container mx-auto px-6">
-          <div className="bg-blue-600 rounded-[3rem] p-12 lg:p-20 text-center text-white relative overflow-hidden">
+          <div className="bg-[#f24026] rounded-[3rem] p-12 lg:p-20 text-center text-white relative overflow-hidden">
             <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
             <h2 className="text-4xl lg:text-5xl font-extrabold mb-8 relative z-10">Ready to Sell Your Car?</h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-12 relative z-10">
+            <p className="text-xl text-[#FFD0C9] max-w-2xl mx-auto mb-12 relative z-10">
               Join thousands of happy customers and experience the easiest way to sell your car in the UAE.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
-              <a href="/" className="px-10 py-4 bg-white text-blue-600 font-extrabold rounded-2xl hover:bg-gray-100 transition-all shadow-xl">
+              <a href="/" className="px-10 py-4 bg-white text-[#f24026] font-extrabold rounded-2xl hover:bg-gray-100 transition-all shadow-xl">
                 Get Free Valuation
               </a>
-              <a href="/contact" className="px-10 py-4 bg-blue-700 text-white font-extrabold rounded-2xl hover:bg-blue-800 transition-all">
+              <a href="/contact" className="px-10 py-4 bg-[#d6351f] text-white font-extrabold rounded-2xl hover:bg-[#b82c19] transition-all">
                 Contact Our Team
               </a>
             </div>
