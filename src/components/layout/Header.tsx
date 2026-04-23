@@ -9,9 +9,9 @@ const navItems = [
         id: 'sell-car',
         label: 'SELL CAR',
         children: [
-            { label: 'Sell Cars', href: '/' },
-            { label: 'We Buy Any Car', href: '/' },
-            { label: 'We Cash Any Car', href: '/' },
+            { label: 'Sell My Car', href: '/sell-my-car' },
+            { label: 'We Buy Any Car', href: '/we-buy-any-car' },
+            { label: 'Cash for Cars', href: '/cash-for-cars' },
         ],
     },
     {
@@ -32,7 +32,7 @@ const navItems = [
             'Toyota', 'Volkswagen',
         ].map(m => ({ label: `Sell ${m}`, href: `/sell-my-${m.toLowerCase()}` })),
     },
-    { id: 'evaluate', label: 'EVALUATE YOUR CAR', href: '/' },
+    { id: 'evaluate', label: 'EVALUATE YOUR CAR', href: '/evaluate-my-car' },
     { id: 'about',    label: 'ABOUT US',          href: '/about-us' },
     { id: 'blog',     label: 'BLOGS',             href: '/blog' },
 ];
