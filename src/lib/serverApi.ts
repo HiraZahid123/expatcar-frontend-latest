@@ -1,7 +1,8 @@
-const BASE =
+const BASE = (
   process.env.INTERNAL_API_URL ??
   process.env.NEXT_PUBLIC_API_URL ??
-  'http://localhost:8000/api/v1';
+  'http://localhost:8000/api/v1'
+).replace(/\/$/, '');
 
 export async function serverFetch<T = any>(
   path: string,
