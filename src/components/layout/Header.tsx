@@ -35,6 +35,7 @@ const navItems = [
     { id: 'evaluate', label: 'EVALUATE YOUR CAR', href: '/evaluate-my-car' },
     { id: 'about',    label: 'ABOUT US',          href: '/about-us' },
     { id: 'blog',     label: 'BLOGS',             href: '/blog' },
+    { id: 'contact',  label: 'CONTACT',           href: '/contact' },
 ];
 
 /* ─── Icons ──────────────────────────────────────────────────── */
