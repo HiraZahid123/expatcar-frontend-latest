@@ -331,7 +331,3 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 .faq-answer { padding: 0 0 1.25rem; color: #626161; font-size: 0.9375rem; line-height: 1.7; }
 
 /* ─── Responsive helpers ─────────────────────────────────────── */
-@media (max-width: 767px) {
-  .hero-section { min-height: auto; padding: 48px 0 160px; }
-  .content-card { padding: 1.5rem; }
-}

@@ -17,7 +17,10 @@ import {
     Mail,
     Search,
     Copy,
-    ClipboardCheck
+    ClipboardCheck,
+    Clock,
+    Zap,
+    Star
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
@@ -29,6 +32,8 @@ const formSchema = z.object({
     variant_id: z.string().min(1, "Variant is required"),
     mileage: z.string().min(1, "Mileage is required"),
     specs: z.string().min(1, "Regional spec is required"),
+    car_option: z.string().min(1, "Car option is required"),
+    paint_condition: z.string().min(1, "Paint condition is required"),
     name: z.string().min(2, "Name is required"),
     phone: z.string().min(8, "Phone is required"),
     email: z.string().email("Valid email is required"),
@@ -43,7 +48,6 @@ interface ValuationFormProps {
 
 export default function ValuationForm({ initialMakeId, initialModelId }: ValuationFormProps) {
     const [step, setStep] = useState(1);
-    const [loading, setLoading] = useState(false);
     const [years, setYears] = useState<number[]>([]);
     const [makes, setMakes] = useState<any[]>([]);
     const [models, setModels] = useState<any[]>([]);
@@ -54,6 +58,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     const [refNum, setRefNum] = useState("");
     const [copied, setCopied] = useState(false);
     const [utmData, setUtmData] = useState<Record<string, string>>({});
+    const [loading, setLoading] = useState({ makes: false, models: false, variants: false });
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -64,6 +69,8 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
             variant_id: "",
             mileage: "",
             specs: "GCC",
+            car_option: "Basic",
+            paint_condition: "Original Paint",
             name: "",
             phone: "",
             email: "",
@@ -119,29 +126,38 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     };
 
     const fetchMakes = async (year: string) => {
+        setLoading(prev => ({ ...prev, makes: true }));
         try {
             const res = await api.get(`/makes?year=${year}`);
             setMakes(res.data.data);
         } catch (e) {
             console.error("Error fetching makes", e);
+        } finally {
+            setLoading(prev => ({ ...prev, makes: false }));
         }
     };
 
     const fetchModels = async (makeId: string, year: string) => {
+        setLoading(prev => ({ ...prev, models: true }));
         try {
             const res = await api.get(`/models?make_id=${makeId}&year=${year}`);
             setModels(res.data.data);
         } catch (e) {
             console.error("Error fetching models", e);
+        } finally {
+            setLoading(prev => ({ ...prev, models: false }));
         }
     };
 
     const fetchVariants = async (modelId: string, year: string) => {
+        setLoading(prev => ({ ...prev, variants: true }));
         try {
             const res = await api.get(`/variants?model_id=${modelId}&year=${year}`);
             setVariants(res.data.data);
         } catch (e) {
             console.error("Error fetching variants", e);
+        } finally {
+            setLoading(prev => ({ ...prev, variants: false }));
         }
     };
 
@@ -270,12 +286,13 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                             <Search className="w-4 h-4 text-[#f24026]" /> Make
                                         </label>
                                         <select
-                                            {...form.register('make_id')}
-                                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
-                                        >
-                                            <option value="">Select Make</option>
-                                            {makes.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
-                                        </select>
+                                        {...form.register('make_id')}
+                                        disabled={loading.makes}
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900 disabled:opacity-50"
+                                    >
+                                        <option value="">{loading.makes ? "Loading Makes..." : "Select Make"}</option>
+                                        {makes.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                                    </select>
                                     </div>
                                 </div>
 
@@ -285,9 +302,10 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     </label>
                                     <select
                                         {...form.register('model_id')}
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
+                                        disabled={loading.models}
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900 disabled:opacity-50"
                                     >
-                                        <option value="">Select Model</option>
+                                        <option value="">{loading.models ? "Loading Models..." : "Select Model"}</option>
                                         {models.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
                                     </select>
                                 </div>
@@ -298,9 +316,10 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     </label>
                                     <select
                                         {...form.register('variant_id')}
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
+                                        disabled={loading.variants}
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900 disabled:opacity-50"
                                     >
-                                        <option value="">Select Variant</option>
+                                        <option value="">{loading.variants ? "Loading Variants..." : "Select Variant"}</option>
                                         {variants.map(v => <option key={v.id} value={v.id}>{v.name} ({v.engine})</option>)}
                                     </select>
                                 </div>
@@ -317,26 +336,37 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                             >
                                 <div className="space-y-2">
                                     <label className="text-sm font-medium text-gray-800 font-bold flex items-center gap-2">
-                                        <Search className="w-4 h-4 text-[#f24026]" /> Mileage (KM)
+                                        <Clock className="w-4 h-4 text-[#f24026]" /> Current Odometer (KMS)
                                     </label>
-                                    <select
-                                        {...form.register('mileage')}
-                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
-                                    >
-                                        <option value="">Select Mileage</option>
-                                        <option value="0 - 10,000">0 - 10,000 km</option>
-                                        <option value="10,000 - 20,000">10,000 - 20,000 km</option>
-                                        <option value="20,000 - 30,000">20,000 - 30,000 km</option>
-                                        <option value="30,000 - 40,000">30,000 - 40,000 km</option>
-                                        <option value="40,000 - 50,000">40,000 - 50,000 km</option>
-                                        <option value="50,000 - 60,000">50,000 - 60,000 km</option>
-                                        <option value="60,000 - 80,000">60,000 - 80,000 km</option>
-                                        <option value="80,000 - 100,000">80,000 - 100,000 km</option>
-                                        <option value="100,000 - 120,000">100,000 - 120,000 km</option>
-                                        <option value="120,000 - 150,000">120,000 - 150,000 km</option>
-                                        <option value="150,000 - 200,000">150,000 - 200,000 km</option>
-                                        <option value="200,000+">200,000+ km</option>
-                                    </select>
+                                    <div className="grid grid-cols-2 gap-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                                        {[
+                                            "0 - 20,000",
+                                            "20,000 - 40,000",
+                                            "40,000 - 60,000",
+                                            "60,000 - 90,000",
+                                            "90,000 - 120,000",
+                                            "120,000 - 150,000",
+                                            "150,000 - 180,000",
+                                            "180,000 - 220,000",
+                                            "220,000 - 250,000",
+                                            "250,000 - 300,000",
+                                            "300,000+",
+                                        ].map((range) => (
+                                            <button
+                                                key={range}
+                                                type="button"
+                                                onClick={() => setValue('mileage', range)}
+                                                className={cn(
+                                                    "py-3 px-2 rounded-xl border-2 transition font-bold text-xs text-center",
+                                                    watch('mileage') === range 
+                                                        ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
+                                                        : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
+                                                )}
+                                            >
+                                                {range} kms
+                                            </button>
+                                        ))}
+                                    </div>
                                     {errors.mileage && <p className="text-xs text-red-500">{errors.mileage.message}</p>}
                                 </div>
 
@@ -345,32 +375,71 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                         <Car className="w-4 h-4 text-[#f24026]" /> Regional Specs
                                     </label>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <button
-                                            type="button"
-                                            onClick={() => setValue('specs', 'GCC')}
-                                            className={cn(
-                                                "py-3 px-4 rounded-xl border-2 transition font-bold text-sm",
-                                                watch('specs') === 'GCC' 
-                                                    ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
-                                                    : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
-                                            )}
-                                        >
-                                            GCC Spec
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => setValue('specs', 'NON-GCC')}
-                                            className={cn(
-                                                "py-3 px-4 rounded-xl border-2 transition font-bold text-sm",
-                                                watch('specs') === 'NON-GCC' 
-                                                    ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
-                                                    : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
-                                            )}
-                                        >
-                                            NON-GCC
-                                        </button>
+                                        {['GCC', 'NON-GCC'].map((s) => (
+                                            <button
+                                                key={s}
+                                                type="button"
+                                                onClick={() => setValue('specs', s)}
+                                                className={cn(
+                                                    "py-3 px-4 rounded-xl border-2 transition font-bold text-sm",
+                                                    watch('specs') === s 
+                                                        ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
+                                                        : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
+                                                )}
+                                            >
+                                                {s === 'GCC' ? 'GCC Spec' : 'NON-GCC'}
+                                            </button>
+                                        ))}
                                     </div>
                                     {errors.specs && <p className="text-xs text-red-500">{errors.specs.message}</p>}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-800 font-bold flex items-center gap-2">
+                                        <Zap className="w-4 h-4 text-[#f24026]" /> Car Option
+                                    </label>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {['Basic', 'Mid Option', 'Full Option', 'I don\'t know'].map((opt) => (
+                                            <button
+                                                key={opt}
+                                                type="button"
+                                                onClick={() => setValue('car_option', opt)}
+                                                className={cn(
+                                                    "py-2 px-3 rounded-xl border-2 transition font-bold text-[10px] sm:text-xs",
+                                                    watch('car_option') === opt 
+                                                        ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
+                                                        : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
+                                                )}
+                                            >
+                                                {opt}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    {errors.car_option && <p className="text-xs text-red-500">{errors.car_option.message}</p>}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-800 font-bold flex items-center gap-2">
+                                        <Star className="w-4 h-4 text-[#f24026]" /> Paint Condition
+                                    </label>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {['Original Paint', 'Partial Repaint', 'Total Repaint', 'I don\'t know'].map((p) => (
+                                            <button
+                                                key={p}
+                                                type="button"
+                                                onClick={() => setValue('paint_condition', p)}
+                                                className={cn(
+                                                    "py-2 px-3 rounded-xl border-2 transition font-bold text-[10px] sm:text-xs",
+                                                    watch('paint_condition') === p 
+                                                        ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
+                                                        : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
+                                                )}
+                                            >
+                                                {p}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    {errors.paint_condition && <p className="text-xs text-red-500">{errors.paint_condition.message}</p>}
                                 </div>
                             </motion.div>
                         )}

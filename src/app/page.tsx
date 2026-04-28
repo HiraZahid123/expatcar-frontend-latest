@@ -119,14 +119,13 @@ export default function Home() {
             <section className="hero-section">
                 <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-8">
                     <div className="text-center max-w-4xl mx-auto">
-                        <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-gray-900 mb-4 leading-snug wow fadeInDown" data-wow-delay="0.15s">
-                            Sell Any Car Today — Completely Hassle Free
-                            <span className="text-[#f24026]"> with Expat Car Buyers</span>
+                        <h1 className="text-3xl md:text-5xl lg:text-[3.25rem] font-extrabold text-gray-900 mb-6 leading-tight wow fadeInDown" data-wow-delay="0.15s">
+                            Sell Any Car in UAE with <span className="text-[#f24026]">Expat Car Buyers</span> — Quick, Easy & Hassle-Free
                         </h1>
-                        <p className="text-base md:text-lg text-[#606568] max-w-2xl mx-auto mb-8 leading-relaxed wow fadeInUp" data-wow-delay="0.3s">
-                            Want to sell your car in the UAE? Simply fill out the form below and you could have the cash in your hand within just 30 minutes — free professional inspection included.
+                        <p className="text-lg md:text-xl text-[#606568] max-w-3xl mx-auto mb-10 leading-relaxed wow fadeInUp" data-wow-delay="0.3s">
+                            Looking to sell your car in <span className="font-bold text-gray-900">Sharjah or Abu Dhabi</span> quickly and without hassle? We make it incredibly easy to sell any car online — from the comfort of your home or office. Get an instant valuation today!
                         </p>
-                        <div className="bg-white rounded-[2rem] shadow-2xl p-4 md:p-6 max-w-2xl mx-auto">
+                        <div className="bg-white rounded-[2rem] shadow-2xl p-4 md:p-6 max-w-2xl mx-auto border border-gray-100">
                             <ValuationForm />
                         </div>
                     </div>

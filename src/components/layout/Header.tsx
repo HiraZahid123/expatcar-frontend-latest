@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 /* ─── Navigation Data ────────────────────────────────────────── */
 const navItems = [
-    {
+    /* {
         id: 'sell-car',
         label: 'SELL CAR',
         children: [
@@ -13,17 +13,17 @@ const navItems = [
             { label: 'We Buy Any Car', href: '/we-buy-any-car' },
             { label: 'Cash for Cars', href: '/cash-for-cars' },
         ],
-    },
+    }, */
     {
         id: 'by-city',
         label: 'BY CITY',
         children: [
-            { label: 'Sell Car in Dubai', href: '/sell-my-dubai-al-quoz' },
+            // { label: 'Sell Car in Dubai', href: '/sell-my-dubai-al-quoz' },
             { label: 'Sell Car in Sharjah', href: '/sell-my-sharjah' },
             { label: 'Sell Car in Abu Dhabi', href: '/sell-my-abu-dhabi' },
         ],
     },
-    {
+    /* {
         id: 'by-model',
         label: 'BY MODEL',
         children: [
@@ -31,7 +31,7 @@ const navItems = [
             'Lexus', 'Jeep', 'Mitsubishi', 'Nissan', 'Porsche',
             'Toyota', 'Volkswagen',
         ].map(m => ({ label: `Sell ${m}`, href: `/sell-my-${m.toLowerCase()}` })),
-    },
+    }, */
     { id: 'evaluate', label: 'EVALUATE YOUR CAR', href: '/evaluate-my-car' },
     { id: 'about',    label: 'ABOUT US',          href: '/about-us' },
     { id: 'blog',     label: 'BLOGS',             href: '/blog' },
@@ -146,6 +146,7 @@ export default function Header() {
                             <WhatsAppIcon />
                         </a>
                         <button
+                            type="button"
                             className="flex flex-col justify-center gap-[5px] p-2 rounded"
                             onClick={() => setMobileOpen(v => !v)}
                             aria-label="Toggle menu"
@@ -163,42 +164,46 @@ export default function Header() {
             <nav className="nav-bar hidden lg:block" ref={navRef} aria-label="Main Navigation">
                 <div className="max-w-7xl mx-auto px-4">
                     <ul className="flex items-stretch">
-                        {navItems.map(item => (
-                            <li key={item.id} className="relative">
-                                {item.children ? (
-                                    <>
-                                        <button
-                                            id={`nav-${item.id}`}
-                                            className="nav-link-item"
-                                            onClick={() => toggle(item.id)}
-                                            aria-haspopup="true"
-                                            aria-expanded={activeMenu === item.id}
-                                        >
+                        {navItems.map(item => {
+                            const isExpanded = activeMenu === item.id;
+                            return (
+                                <li key={item.id} className="relative">
+                                    {item.children ? (
+                                        <>
+                                            <button
+                                                type="button"
+                                                id={`nav-${item.id}`}
+                                                className="nav-link-item"
+                                                onClick={() => toggle(item.id)}
+                                                aria-haspopup="true"
+                                                aria-expanded={isExpanded}
+                                            >
+                                                {item.label}
+                                                <ChevronDown open={isExpanded} />
+                                            </button>
+                                            {isExpanded && (
+                                                <div className={`sub-menu ${item.id === 'by-model' ? 'sub-menu--tall' : ''}`}>
+                                                    {item.children.map(child => (
+                                                        <Link
+                                                            key={child.label}
+                                                            href={child.href}
+                                                            className="sub-menu-link"
+                                                            onClick={() => setActiveMenu(null)}
+                                                        >
+                                                            {child.label}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </>
+                                    ) : (
+                                        <Link href={item.href!} className="nav-link-item">
                                             {item.label}
-                                            <ChevronDown open={activeMenu === item.id} />
-                                        </button>
-                                        {activeMenu === item.id && (
-                                            <div className={`sub-menu ${item.id === 'by-model' ? 'sub-menu--tall' : ''}`}>
-                                                {item.children.map(child => (
-                                                    <Link
-                                                        key={child.label}
-                                                        href={child.href}
-                                                        className="sub-menu-link"
-                                                        onClick={() => setActiveMenu(null)}
-                                                    >
-                                                        {child.label}
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </>
-                                ) : (
-                                    <Link href={item.href!} className="nav-link-item">
-                                        {item.label}
-                                    </Link>
-                                )}
-                            </li>
-                        ))}
+                                        </Link>
+                                    )}
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </nav>
@@ -209,44 +214,48 @@ export default function Header() {
                 style={{ background: '#f24026' }}
             >
                 <div className="px-4 py-3 border-t border-[#f84429]">
-                    {navItems.map(item => (
-                        <div key={item.id}>
-                            {item.children ? (
-                                <>
-                                    <button
-                                        className="w-full flex items-center justify-between text-white font-bold py-3.5 text-sm tracking-widest border-b border-white/10"
-                                        onClick={() => toggle(item.id)}
-                                        aria-expanded={activeMenu === item.id}
+                    {navItems.map(item => {
+                        const isExpanded = activeMenu === item.id;
+                        return (
+                            <div key={item.id}>
+                                {item.children ? (
+                                    <>
+                                        <button
+                                            type="button"
+                                            className="w-full flex items-center justify-between text-white font-bold py-3.5 text-sm tracking-widest border-b border-white/10"
+                                            onClick={() => toggle(item.id)}
+                                            aria-expanded={isExpanded}
+                                        >
+                                            {item.label}
+                                            <ChevronDown open={isExpanded} />
+                                        </button>
+                                        <div className={`overflow-hidden transition-all duration-200 ${isExpanded ? 'max-h-72' : 'max-h-0'}`}>
+                                            <div className="bg-white/10 backdrop-blur-sm rounded-xl my-1.5 overflow-y-auto max-h-56">
+                                                {item.children.map(child => (
+                                                    <Link
+                                                        key={child.label}
+                                                        href={child.href}
+                                                        className="block px-5 py-3 text-white text-sm border-b border-white/10 last:border-0 hover:bg-white/10 transition-colors"
+                                                        onClick={() => { setMobileOpen(false); setActiveMenu(null); }}
+                                                    >
+                                                        {child.label}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <Link
+                                        href={item.href!}
+                                        className="block text-white font-bold py-3.5 text-sm tracking-widest border-b border-white/10 hover:text-white/80 transition-colors"
+                                        onClick={() => setMobileOpen(false)}
                                     >
                                         {item.label}
-                                        <ChevronDown open={activeMenu === item.id} />
-                                    </button>
-                                    <div className={`overflow-hidden transition-all duration-200 ${activeMenu === item.id ? 'max-h-72' : 'max-h-0'}`}>
-                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl my-1.5 overflow-y-auto max-h-56">
-                                            {item.children.map(child => (
-                                                <Link
-                                                    key={child.label}
-                                                    href={child.href}
-                                                    className="block px-5 py-3 text-white text-sm border-b border-white/10 last:border-0 hover:bg-white/10 transition-colors"
-                                                    onClick={() => { setMobileOpen(false); setActiveMenu(null); }}
-                                                >
-                                                    {child.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </>
-                            ) : (
-                                <Link
-                                    href={item.href!}
-                                    className="block text-white font-bold py-3.5 text-sm tracking-widest border-b border-white/10 hover:text-white/80 transition-colors"
-                                    onClick={() => setMobileOpen(false)}
-                                >
-                                    {item.label}
-                                </Link>
-                            )}
-                        </div>
-                    ))}
+                                    </Link>
+                                )}
+                            </div>
+                        );
+                    })}
 
                     {/* Mobile contact buttons */}
                     <div className="flex gap-3 mt-4 pb-2">
