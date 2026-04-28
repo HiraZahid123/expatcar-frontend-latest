@@ -42,9 +42,9 @@ export default function EvaluatePage() {
                             />
                             
                             <img
-                                src="/front/images/X2.webp" 
+                                src="/front/images/Jaguar-Premium.png" 
                                 alt="Evaluate My Car UAE"
-                                className="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.2)] relative z-10 scale-110"
+                                className="w-full h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.3)] relative z-10 scale-125"
                             />
                         </div>
                     </div>
