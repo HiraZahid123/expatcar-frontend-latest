@@ -4,49 +4,47 @@ import ValuationForm from '@/components/valuation-form/ValuationForm';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
 export const metadata: Metadata = {
-    title: 'Free Car Valuation in Dubai, UAE | Expat Car Buyers',
-    description: 'Get a free, fast & accurate car valuation in Dubai, UAE—online or at your home. No obligations. Book now & get paid instantly with all paperwork done!',
+    title: 'Free Car Valuation UAE | How to Sell My Car in UAE',
+    description: 'Avoid the cons and find out what your car is really worth. Get a free professional car inspection and instant cash payment in UAE.',
 };
 
-export default function EvaluateMyCarPage() {
+export default function EvaluatePage() {
     return (
         <main className="overflow-x-hidden">
             {/* ══════════════════════════════════════════════
-                HERO SECTION (Exact Replica Style)
+                HERO SECTION
             ══════════════════════════════════════════════ */}
             <section className="landing-hero">
-                <div className="landing-hero-blob" />
+                <div className="landing-hero-blob" style={{ background: '#FFF5E6' }} />
                 
                 <div className="landing-hero-container">
-                    {/* Left Side: Car Image & Text */}
                     <div className="landing-hero-content relative">
                         <div className="wow fadeInLeft" data-wow-delay="0.1s">
                             <span className="text-[#f24026] font-bold text-sm uppercase tracking-widest mb-4 block">
-                                No. 1 Website for
+                                Expert Valuation Service
                             </span>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6">
-                                Car Valuation in <br />
-                                <span className="text-[#f24026]">Dubai, UAE</span>
+                                Evaluate My <br />
+                                <span className="text-[#f24026]">Car UAE</span>
                             </h1>
                             <p className="text-lg text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
-                                People trust us because we provide Fast, easy and honest service.
+                                Avoid the cons and find out what your car is really worth. Find Out and Sell Any Car with Confidence!
                             </p>
                         </div>
                         
                         <div className="relative mt-8 md:mt-0 wow zoomIn" data-wow-delay="0.3s">
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
                             <img
-                                src="/front/images/X5.webp"
-                                alt="Car Valuation UAE"
+                                src="/front/images/Jaguar.webp" 
+                                alt="Evaluate My Car UAE"
                                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10"
                             />
                         </div>
                     </div>
 
-                    {/* Right Side: Form Card */}
                     <div className="landing-hero-form wow fadeInRight" data-wow-delay="0.2s">
                         <div className="text-center mb-6">
-                            <h3 className="text-xl font-bold text-gray-900">Get a Free Valuation</h3>
+                            <h3 className="text-xl font-bold text-gray-900">Start Free Valuation</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
                         <ValuationForm />
@@ -55,61 +53,89 @@ export default function EvaluateMyCarPage() {
             </section>
 
             {/* ══════════════════════════════════════════════
-                MAIN CONTENT SECTION
+                HOW DO I SELL MY CAR IN UAE?
             ══════════════════════════════════════════════ */}
             <section className="py-20 bg-white">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
-                    <div className="space-y-8 mb-20 max-w-4xl">
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            Selling your car is quite complicated than just driving it around your city. You may have to undertake some necessary processes to get your car ready for sale, and one of the many essential ones is evaluating your car. That’s where car valuation Dubai services can truly make a difference.
-                        </p>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            There are several benefits to evaluating your car before you decide to sell. Not having accurate information on the market value of your car may see you settle for a lesser deal. Since the goal of getting your car valued is to have a good bargain when selling your car, car valuation is a necessary step. You can simply arrange an appointment with our team at Expat Car Buyers. Our team will have an appointment booked with you at your place of convenience, come over to evaluate your car within 10 minutes, and offer you the best value for your car on the spot.
-                        </p>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            Also, it is important to know that car valuation online isn’t always the best. And that’s because most of these online car valuation websites only collect a few data from you to arrive at a market value for your old car. Without a proper assessment of the condition of your used car, it may be difficult to come up with the correct value for your car.
-                        </p>
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-16">Sounds great, but <span className="text-[#f24026]">how do I sell my car in UAE?</span></h2>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        {[
+                            { title: 'Book an Appointment', desc: 'Let us know a time that works best for you and book an appointment for a vehicle inspection at your convenience.' },
+                            { title: 'Bring your vehicle', desc: 'Simply, drive your car over to your nearest inspection point and allow us to carry out a free professional inspection.' },
+                            { title: 'Get a no-obligation quote', desc: 'Receive a fair non-obligation quote based on findings. The choice to sell is 100% with you.' },
+                            { title: 'Happy with the price?', desc: 'Get paid. If you are happy with the offer, simply give us a thumbs up and we will put the cash right in your hand!' }
+                        ].map((step, idx) => (
+                            <div key={idx} className="text-center group">
+                                <div className="w-16 h-16 bg-[#f24026]/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#f24026] group-hover:text-white transition-colors border border-[#f24026]/10">
+                                    <span className="font-black text-xl">{idx + 1}</span>
+                                </div>
+                                <h4 className="font-bold text-gray-900 mb-2">{step.title}</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                            </div>
+                        ))}
                     </div>
+                </div>
+            </section>
 
-                    {/* Benefits Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-                        <div className="bg-[#FCF5F2] p-10 rounded-[2.5rem] border-2 border-[#FFD0C9]">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-8">Benefit of Using Our Evaluation Service</h2>
-                            <div className="space-y-8">
-                                {[
-                                    { title: 'Saves You Time', desc: 'It’s a lot of trying to prepare your car for sale. You have to put everything in place... However, the Expat Car Buyer provides an unparalleled service of checking the in and out of your car.' },
-                                    { title: 'It’s Free', desc: 'We provide this car valuation service for free, all expenses paid when you choose to sell your car with us.' },
-                                    { title: 'Best Value', desc: 'Our technicians’ process to evaluate your car is transparent. We will have your car inspected and valued better than many dealers.' },
-                                    { title: 'Immediate Paperwork', desc: 'We are accredited by the RTA and Tasjeel and can finish all the paperwork without going to the RTA Center.' }
-                                ].map(item => (
-                                    <div key={item.title}>
-                                        <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
-                                            <div className="w-2 h-2 rounded-full bg-[#f24026]" />
-                                            {item.title}
-                                        </h4>
-                                        <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-                                    </div>
-                                ))}
+            {/* ══════════════════════════════════════════════
+                CONFIDENCE SECTION
+            ══════════════════════════════════════════════ */}
+            <section className="py-20 bg-[#FCF5F2]">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <div className="space-y-12">
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">Find Out and Sell Any Car with <span className="text-[#f24026]">Confidence!</span></h2>
+                                <p className="text-gray-700 leading-relaxed text-lg mb-6">
+                                    Our core principles are transparency and fairness. We don’t hide behind a big corporate office thousands of miles away, we are right with you on the ground helping you to make your sale.
+                                </p>
+                                <p className="text-gray-700 leading-relaxed">
+                                    Our vision is to build lifelong relationships with our customers and to provide them with the utmost confidence when using our services. Once you use our service once, you will never again think to sell car anywhere else!
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why people <span className="text-[#f24026]">trust us?</span></h3>
+                                <div className="grid grid-cols-1 gap-6">
+                                    {[
+                                        { title: 'Free Car Valuation', desc: 'Get a non-obligation quote for your car based on the physical condition and the market price.' },
+                                        { title: 'Ownership Transfer', desc: 'We are authorized by RTA, and our professionals will transfer the car in our office, with no hassles!' },
+                                        { title: 'Finance Settlement', desc: 'We clear the outstanding finance on cars and pay the difference to customers.' },
+                                        { title: 'Instant Cash', desc: 'You can sell a car in 30 minutes and receive cash, bank transfer or cheque!' }
+                                    ].map(g => (
+                                        <div key={g.title} className="flex gap-4">
+                                            <div className="w-2 h-2 rounded-full bg-[#f24026] mt-2 shrink-0" />
+                                            <div>
+                                                <h5 className="font-bold text-gray-900 text-sm mb-1 uppercase tracking-wider">{g.title}</h5>
+                                                <p className="text-gray-600 text-sm leading-relaxed">{g.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
-                        <div className="space-y-6">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">What does your car value depend on?</h2>
-                            <p className="text-gray-600">Here are some of the key components that determine the value of your used car:</p>
-                            <div className="space-y-6">
-                                {[
-                                    { title: 'Make, Model, and Year', desc: 'Brand value and depreciation are major factors we consider.' },
-                                    { title: 'Features Available', desc: 'Functional equipment like leather seats or custom sound systems increase value.' },
-                                    { title: 'Mileage History', desc: 'The more miles your car has travelled, the lesser it’s worth.' },
-                                    { title: 'Car Condition', desc: 'Overall condition can influence the value of your car by up to 30%!' },
-                                    { title: 'Service History', desc: 'A complete service record increases the lifespan and value of the car.' },
-                                    { title: 'Regional Specifications', desc: 'Non-GCC spec cars have significantly lower values in the UAE.' }
-                                ].map(item => (
-                                    <div key={item.title} className="border-b border-gray-100 pb-4 last:border-0">
-                                        <h4 className="font-bold text-gray-900 mb-1">{item.title}</h4>
-                                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                                    </div>
-                                ))}
+                        <div className="space-y-12">
+                            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-[#FFD0C9]">
+                                <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wider">Valuation Factors</h3>
+                                <div className="space-y-6">
+                                    {[
+                                        { title: 'Mileage Assessment', desc: 'We assess how much mileage has the car done on the clock.' },
+                                        { title: 'General Condition', desc: 'A visual and mechanical inspection will give an overall view of how well the car has been looked after.' },
+                                        { title: 'Accident History', desc: 'We check if the car has been involved in any accidents or required any major repairs.' },
+                                        { title: 'Market Demand', desc: 'Simple supply and demand economics for each car model will affect the price.' }
+                                    ].map(p => (
+                                        <div key={p.title}>
+                                            <h5 className="font-bold text-[#f24026] text-sm mb-1 uppercase">{p.title}</h5>
+                                            <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h2 className="text-2xl font-bold text-gray-900 mb-4 italic">&ldquo;Our Happy Customers&rdquo;</h2>
+                                <TestimonialCarousel />
                             </div>
                         </div>
                     </div>
@@ -117,14 +143,23 @@ export default function EvaluateMyCarPage() {
             </section>
 
             {/* ══════════════════════════════════════════════
-                TESTIMONIALS
+                EXCELLENCE SECTION
             ══════════════════════════════════════════════ */}
-            <section className="py-20 bg-[#FCF5F2]">
-                <div className="max-w-6xl mx-auto px-4 md:px-8 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-12">
-                        Trusted by <span className="text-[#f24026]">Thousands</span> of Sellers
-                    </h2>
-                    <TestimonialCarousel />
+            <section className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-12 uppercase">What makes us the best place to sell used car in UAE?</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <ul className="space-y-6 list-disc pl-5 text-gray-700">
+                            <li>We strive for excellence in every single aspect of our business.</li>
+                            <li>We will never be beaten on price. We pride ourselves on providing maximum value.</li>
+                            <li>We do all the heavy lifting for you. No paperwork. No admin.</li>
+                        </ul>
+                        <ul className="space-y-6 list-disc pl-5 text-gray-700">
+                            <li>Our inspection process is totally free of charge.</li>
+                            <li>No pushing to make the sale. The choice is completely yours.</li>
+                            <li>Headache free sale. We take all the stress out of the process.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </main>

@@ -4,39 +4,39 @@ import ValuationForm from '@/components/valuation-form/ValuationForm';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
 export const metadata: Metadata = {
-    title: 'We Buy Any Car Dubai | Best Car Buyer in UAE',
-    description: 'We Buy Any Car in Dubai, UAE, Sharjah and Abu Dhabi. Get the highest price as per market and instant cash payment.',
+    title: 'Cash For Any Car Dubai | Instant Cash for Cars UAE',
+    description: 'Cash Your Car in Dubai, Sharjah and Abu-Dhabi with The Highest No-obligation Price. We Cash Any Car in 30 Minutes regardless of condition.',
 };
 
-export default function WeBuyAnyCarPage() {
+export default function WeCashAnyCarPage() {
     return (
         <main className="overflow-x-hidden">
             {/* ══════════════════════════════════════════════
                 HERO SECTION
             ══════════════════════════════════════════════ */}
             <section className="landing-hero">
-                <div className="landing-hero-blob" style={{ background: '#FFE6E6' }} />
+                <div className="landing-hero-blob" style={{ background: '#F2F2F2' }} />
                 
                 <div className="landing-hero-container">
                     <div className="landing-hero-content relative">
                         <div className="wow fadeInLeft" data-wow-delay="0.1s">
                             <span className="text-[#f24026] font-bold text-sm uppercase tracking-widest mb-4 block">
-                                Trusted Car Buying Service
+                                Get Cash Instantly
                             </span>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] mb-6">
-                                We Buy Any <br />
-                                <span className="text-[#f24026]">Car Dubai</span>
+                                We Cash Any <br />
+                                <span className="text-[#f24026]">Car UAE</span>
                             </h1>
                             <p className="text-lg text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
-                                We Buy Any Car in Dubai, Sharjah and Abu Dhabi. Get the highest price as per market and instant cash payment.
+                                Cash Your Car in Dubai, Sharjah and Abu-Dhabi with The Highest No-obligation Price. We Cash Any Car in 30 Minutes!
                             </p>
                         </div>
                         
                         <div className="relative mt-8 md:mt-0 wow zoomIn" data-wow-delay="0.3s">
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
                             <img
-                                src="/front/images/Mustang.webp" 
-                                alt="We Buy Any Car Dubai"
+                                src="/front/images/Jaguar.webp" 
+                                alt="We Cash Any Car Dubai"
                                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10"
                             />
                         </div>
@@ -44,7 +44,7 @@ export default function WeBuyAnyCarPage() {
 
                     <div className="landing-hero-form wow fadeInRight" data-wow-delay="0.2s">
                         <div className="text-center mb-6">
-                            <h3 className="text-xl font-bold text-gray-900">Get a Free Valuation</h3>
+                            <h3 className="text-xl font-bold text-gray-900">Cash Your Car Now</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
                         <ValuationForm />
@@ -53,17 +53,17 @@ export default function WeBuyAnyCarPage() {
             </section>
 
             {/* ══════════════════════════════════════════════
-                HOW DOES IT WORK
+                WHY CHOOSE US
             ══════════════════════════════════════════════ */}
             <section className="py-20 bg-white">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
-                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">How does it work?</h2>
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">Why Should I Choose Us to Cash my car?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                         {[
-                            { title: 'Book an Appointment', desc: 'By filling out the form.' },
-                            { title: 'Come with Your Vehicle', desc: 'We\'ll evaluate your car as per technical and market parameters.' },
-                            { title: 'Get an Offer', desc: 'Get a no-obligation price according to your car\'s condition.' },
-                            { title: 'Satisfied With Price?', desc: 'Accept our offer, Get payment and initiate documentation.' }
+                            { title: 'Book an Appointment', desc: 'Online or offline to sell your car for cash.' },
+                            { title: 'Bring Your Vehicle', desc: 'On the appointed date and we\'ll inspect it.' },
+                            { title: 'Get a Custom Quote', desc: 'According to your car\'s condition & market price.' },
+                            { title: 'Price Sounds Good?', desc: 'Accept the offer and cash your car. That\'s it!' }
                         ].map((step, idx) => (
                             <div key={idx} className="text-center group">
                                 <div className="w-16 h-16 bg-[#f24026]/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#f24026] group-hover:text-white transition-colors border border-[#f24026]/10">
@@ -78,19 +78,19 @@ export default function WeBuyAnyCarPage() {
             </section>
 
             {/* ══════════════════════════════════════════════
-                MAIN CONTENT - DUBAI SPECIFIC
+                MAIN CONTENT - CASH ANY CAR
             ══════════════════════════════════════════════ */}
             <section className="py-20 bg-[#FCF5F2]">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         <div className="space-y-12">
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">We Buy Any Car in <span className="text-[#f24026]">Dubai</span></h2>
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">We Cash Any Car in <span className="text-[#f24026]">30 Minutes</span></h2>
                                 <p className="text-gray-700 leading-relaxed text-lg mb-6">
-                                    As we provide the best car selling services in Dubai, we make sure to keep the car buying deal professional and negotiable enough for both parties to agree. Most importantly we make sure that your cash is ready as soon as the deal is being made.
+                                    With us, you can sell car for cash at a price that will benefit you. We have an incredible team of automotive experts who are dedicated to delivering the best service to customers.
                                 </p>
                                 <p className="text-gray-700 leading-relaxed">
-                                    Once you contact us and your car is being evaluated, we give you a reasonable price that is valid for one week. In this week, we do not care if the market goes down, our end of the deal is always kept.
+                                    We cash any car, regardless of its condition. You are more than welcome to bring your damaged cars or the non-functioning ones to us and we&apos;ll sell them at a satisfactory price.
                                 </p>
                             </div>
                             
@@ -98,10 +98,10 @@ export default function WeBuyAnyCarPage() {
                                 <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">Our Guarantees</h2>
                                 <div className="grid grid-cols-2 gap-4">
                                     {[
-                                        'Simple and Easy Process',
-                                        'Highest Price As Per Market',
-                                        'No-Obligation Price Offer',
-                                        'In House Documentation'
+                                        '100% safe & secure',
+                                        'Market-competitive rates',
+                                        'Super-fast procedure',
+                                        'Sold in no time'
                                     ].map(g => (
                                         <div key={g} className="flex items-center gap-3 font-bold text-gray-800 text-sm">
                                             <div className="w-1.5 h-1.5 rounded-full bg-[#f24026]" /> {g}
@@ -113,13 +113,13 @@ export default function WeBuyAnyCarPage() {
 
                         <div className="space-y-12">
                             <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-[#FFD0C9]">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wider">Why Choose Us?</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wider">Selling Process</h3>
                                 <div className="space-y-6">
                                     {[
-                                        { title: 'Most Trusted Buyers', desc: 'Expat Car Buyer is the oldest and most trusted car buying service in Dubai, UAE.' },
-                                        { title: 'RTA Approved', desc: 'We\'re RTA approved and offer in-house name transfer and documentation.' },
-                                        { title: 'Finance Support', desc: 'We support and settle your debt and finance problems and offer you the difference.' },
-                                        { title: 'Instant Payment', desc: 'We support all payment methods and hold nothing but our client\'s trust.' }
+                                        { title: 'Free Valuation', desc: 'We valuate your car according to standard parameters at our showrooms.' },
+                                        { title: 'Ownership Transfer', desc: 'We cash your car and transfer the ownership to expatcarbuyer.' },
+                                        { title: 'Support in Debt', desc: 'We clear debts on your vehicle and accommodate you with a handsome margin.' },
+                                        { title: 'Super-fast payment', desc: 'The payment will be transferred within just 30 minutes.' }
                                     ].map(p => (
                                         <div key={p.title}>
                                             <h5 className="font-bold text-[#f24026] text-sm mb-1 uppercase">{p.title}</h5>
@@ -130,9 +130,32 @@ export default function WeBuyAnyCarPage() {
                             </div>
 
                             <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4 italic">&ldquo;What our clients say&rdquo;</h2>
+                                <h2 className="text-2xl font-bold text-gray-900 mb-4 italic">&ldquo;What our customers say&rdquo;</h2>
                                 <TestimonialCarousel />
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ══════════════════════════════════════════════
+                COMMON ISSUES
+            ══════════════════════════════════════════════ */}
+            <section className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4 md:px-8 text-center">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-12 uppercase tracking-wider">Common Issues When Selling For Cash</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                        <div className="bg-[#FCF5F2] p-8 rounded-3xl">
+                            <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm tracking-widest">Lack of Repair Work</h4>
+                            <p className="text-sm text-gray-600 leading-relaxed">Buyers often turn away from vehicles that clearly have not been properly maintained or repaired.</p>
+                        </div>
+                        <div className="bg-[#FCF5F2] p-8 rounded-3xl">
+                            <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm tracking-widest">Unnecessary Modifications</h4>
+                            <p className="text-sm text-gray-600 leading-relaxed">Car modifications can often increase your vehicle&apos;s vulnerability to depreciation.</p>
+                        </div>
+                        <div className="bg-[#FCF5F2] p-8 rounded-3xl">
+                            <h4 className="font-bold text-gray-900 mb-4 uppercase text-sm tracking-widest">Incomplete Paperwork</h4>
+                            <p className="text-sm text-gray-600 leading-relaxed">Without relevant paperwork, it can be hard to authenticate the legal ownership of the car.</p>
                         </div>
                     </div>
                 </div>
