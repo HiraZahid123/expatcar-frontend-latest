@@ -151,9 +151,9 @@ export default function Header() {
             </div>
 
             {/* ══ DESKTOP NAV BAR ══ */}
-            <nav className="nav-bar hidden lg:block" ref={navRef} aria-label="Main Navigation">
+            <nav className="nav-bar hidden lg:block border-t border-white/10" ref={navRef} aria-label="Main Navigation">
                 <div className="max-w-7xl mx-auto px-4">
-                    <ul className="flex items-stretch">
+                    <ul className="flex items-center justify-center">
                         {navItems.map(item => {
                             const isExpanded = activeMenu === item.id;
                             return (
