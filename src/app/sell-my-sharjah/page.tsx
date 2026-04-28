@@ -80,61 +80,90 @@ export default function SharjahPage() {
             {/* ══════════════════════════════════════════════
                 MAIN CONTENT - SHARJAH SPECIFIC
             ══════════════════════════════════════════════ */}
-            <section className="py-20 bg-[#FCF5F2]">
+            <section className="py-24 bg-[#FCF5F2]">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        {/* Left Column: Content + Guarantees */}
                         <div className="space-y-12">
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">How to Sell Car in <span className="text-[#f24026]">Sharjah</span></h2>
-                                <p className="text-gray-700 leading-relaxed text-lg">
-                                    Are you looking to sell your car in Sharjah? Expat Car Buyers can help make the process quick and hassle-free. As one of the leading car buyers in Sharjah, we offer a seamless and transparent process to help you sell your car.
-                                </p>
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">How to Sell Car in <span className="text-[#f24026]">Sharjah</span></h2>
+                                <div className="space-y-4 text-gray-700 leading-relaxed text-[1.05rem]">
+                                    <p>
+                                        Are you looking to sell your car in Sharjah? Expat Car Buyers can help make the process quick and hassle-free. As one of the leading car buyers in Sharjah, we offer a seamless and transparent process to help you sell your car.
+                                    </p>
+                                    <p>
+                                        Simply search for &ldquo;sell my car Sharjah&rdquo; or &ldquo;sell car Sharjah&rdquo; online and you will find numerous options. However, it&apos;s important to choose a reputable and trustworthy car buyer that can offer you the best price. That&apos;s where we can help.
+                                    </p>
+                                </div>
                             </div>
                             
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">Sell Car in Sharjah at the right price</h2>
-                                <p className="text-gray-700 leading-relaxed mb-6">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">Sell Car in Sharjah <span className="text-[#f24026]">at the right price</span></h2>
+                                <p className="text-gray-700 leading-relaxed mb-8">
                                     Selling your car in Sharjah can be a daunting task, especially if you&apos;re not sure how to get the best price. At Expat Car Buyers, we understand that getting the right price for your car is important.
                                 </p>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                                     {[
                                         'Guaranteed purchase',
                                         'Sell fast minimum hassle',
                                         'Paid within 30 minutes',
                                         'Finance settlement'
                                     ].map(g => (
-                                        <div key={g} className="flex items-center gap-3 font-bold text-gray-800 text-sm">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[#f24026]" /> {g}
+                                        <div key={g} className="flex items-center gap-3 font-bold text-gray-800">
+                                            <div className="w-2.5 h-2.5 rounded-full bg-[#f24026] shadow-[0_0_10px_rgba(242,64,38,0.4)]" /> 
+                                            {g}
                                         </div>
                                     ))}
+                                </div>
+                                <div className="mt-12 rounded-3xl overflow-hidden shadow-2xl border border-white/50">
+                                    <img src="/front/images/our-gurantee-right.webp" alt="Our Guarantee Sharjah" className="w-full h-auto" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="space-y-12">
-                            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-[#FFD0C9]">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wider">THE WHOLE SELLING METHOD</h3>
-                                <div className="space-y-6">
+                        {/* Right Column: Method Box */}
+                        <div className="lg:sticky lg:top-32">
+                            <div className="bg-white p-10 rounded-[3rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-[#FFD0C9] relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-[#f24026]/5 rounded-bl-full" />
+                                <h3 className="text-2xl font-black text-gray-900 mb-10 uppercase tracking-widest border-b border-gray-100 pb-4">
+                                    The <span className="text-[#f24026]">Method</span>
+                                </h3>
+                                <div className="space-y-10">
                                     {[
-                                        { title: 'Comprehensive Car Valuation', desc: 'Once you bring your car to one of our showrooms, we will do a comprehensive valuation. Then we price it according to market value.' },
-                                        { title: 'Ownership Transfer', desc: 'We will take care of all the ownership transfer documents. You just need to sign our agreement.' },
-                                        { title: 'Finance Settlement', desc: 'If your car is under finance, we will be able to settle it in the best possible way. You don’t have to worry about it.' },
-                                        { title: 'Get paid in 30 minutes', desc: 'We ensure that you will be paid in cash for the value of your car within just 30 minutes!' }
+                                        { title: 'Comprehensive Car Valuation', desc: 'Once you bring your car to one of our showrooms, we will do a comprehensive valuation. Then we price it according to market value.', icon: '01' },
+                                        { title: 'Ownership Transfer', desc: 'We will take care of all the ownership transfer documents. You just need to sign our agreement.', icon: '02' },
+                                        { title: 'Finance Settlement', desc: 'If your car is under finance, we will be able to settle it in the best possible way. You don’t have to worry about it.', icon: '03' },
+                                        { title: 'Get paid in 30 minutes', desc: 'We ensure that you will be paid in cash for the value of your car within just 30 minutes!', icon: '04' }
                                     ].map(p => (
-                                        <div key={p.title}>
-                                            <h5 className="font-bold text-[#f24026] text-sm mb-1">{p.title}</h5>
-                                            <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                                        <div key={p.title} className="flex gap-6">
+                                            <div className="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-lg">
+                                                {p.icon}
+                                            </div>
+                                            <div>
+                                                <h5 className="font-bold text-[#f24026] text-lg mb-2">{p.title}</h5>
+                                                <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4 italic">&ldquo;What people are saying in Sharjah?&rdquo;</h2>
-                                <TestimonialCarousel />
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* ══════════════════════════════════════════════
+                TESTIMONIALS SECTION (Full Width)
+            ══════════════════════════════════════════════ */}
+            <section className="py-24 bg-white border-t border-gray-100">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight italic uppercase">
+                            &ldquo;What people are saying in <span className="text-[#f24026]">Sharjah?</span>&rdquo;
+                        </h2>
+                        <div className="w-24 h-1 bg-[#f24026] mx-auto rounded-full" />
+                    </div>
+                    <TestimonialCarousel />
                 </div>
             </section>
         </main>

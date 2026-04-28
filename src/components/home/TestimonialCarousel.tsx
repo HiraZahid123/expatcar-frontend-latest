@@ -86,26 +86,21 @@ export default function TestimonialCarousel() {
                             className="flex-shrink-0 px-3"
                             style={{ width: `${cardWidth}%` }}
                         >
-                            <div className="review-card flex flex-col justify-between" style={{ minHeight: '300px' }}>
-                                <div>
-                                    <div className="mb-3">
-                                        <img src="/front/images/5stars.png" alt="5 stars" width={100} style={{ opacity: 0.85 }} />
-                                    </div>
-                                    <p className="text-[#626161] text-[0.9375rem] leading-relaxed mb-5" style={{ minHeight: '100px' }}>
-                                        {t.text}
-                                    </p>
+                            <div className="review-card flex flex-col items-center text-center p-8 bg-white rounded-[2rem] shadow-xl border border-[#FFD0C9]/50" style={{ minHeight: '380px' }}>
+                                <div className="mb-6">
+                                    <img src="/front/images/5stars.png" alt="5 stars" width={120} className="mx-auto" />
                                 </div>
-                                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#FFD0C9]">
-                                            <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-gray-900 text-sm mb-0">{t.name}</h4>
-                                            <div className="text-xs text-[#626161]">{t.date}</div>
-                                        </div>
+                                
+                                <p className="text-[#626161] text-[0.95rem] leading-relaxed mb-8 italic flex-grow">
+                                    &ldquo;{t.text}&rdquo;
+                                </p>
+
+                                <div className="mt-auto pt-6 border-t border-gray-100 w-full flex flex-col items-center">
+                                    <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-[#FFD0C9] mb-4 shadow-md">
+                                        <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
                                     </div>
-                                    <GoogleIcon />
+                                    <h4 className="font-bold text-gray-900 text-base mb-1">{t.name}</h4>
+                                    <div className="text-xs font-bold text-[#f24026] uppercase tracking-widest">{t.date}</div>
                                 </div>
                             </div>
                         </div>

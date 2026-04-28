@@ -80,22 +80,25 @@ export default function EvaluatePage() {
             {/* ══════════════════════════════════════════════
                 CONFIDENCE SECTION
             ══════════════════════════════════════════════ */}
-            <section className="py-20 bg-[#FCF5F2]">
+            <section className="py-24 bg-[#FCF5F2]">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        {/* Left Column */}
                         <div className="space-y-12">
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">Find Out and Sell Any Car with <span className="text-[#f24026]">Confidence!</span></h2>
-                                <p className="text-gray-700 leading-relaxed text-lg mb-6">
-                                    Our core principles are transparency and fairness. We don’t hide behind a big corporate office thousands of miles away, we are right with you on the ground helping you to make your sale.
-                                </p>
-                                <p className="text-gray-700 leading-relaxed">
-                                    Our vision is to build lifelong relationships with our customers and to provide them with the utmost confidence when using our services. Once you use our service once, you will never again think to sell car anywhere else!
-                                </p>
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">Find Out and Sell Any Car with <span className="text-[#f24026]">Confidence!</span></h2>
+                                <div className="space-y-4 text-gray-700 leading-relaxed text-[1.05rem]">
+                                    <p>
+                                        Our core principles are transparency and fairness. We don’t hide behind a big corporate office thousands of miles away, we are right with you on the ground helping you to make your sale.
+                                    </p>
+                                    <p>
+                                        Our vision is to build lifelong relationships with our customers and to provide them with the utmost confidence when using our services. Once you use our service once, you will never again think to sell car anywhere else!
+                                    </p>
+                                </div>
                             </div>
                             
                             <div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why people <span className="text-[#f24026]">trust us?</span></h3>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-8 uppercase tracking-tight">Why people <span className="text-[#f24026]">trust us?</span></h3>
                                 <div className="grid grid-cols-1 gap-6">
                                     {[
                                         { title: 'Free Car Valuation', desc: 'Get a non-obligation quote for your car based on the physical condition and the market price.' },
@@ -103,10 +106,10 @@ export default function EvaluatePage() {
                                         { title: 'Finance Settlement', desc: 'We clear the outstanding finance on cars and pay the difference to customers.' },
                                         { title: 'Instant Cash', desc: 'You can sell a car in 30 minutes and receive cash, bank transfer or cheque!' }
                                     ].map(g => (
-                                        <div key={g.title} className="flex gap-4">
-                                            <div className="w-2 h-2 rounded-full bg-[#f24026] mt-2 shrink-0" />
+                                        <div key={g.title} className="flex gap-4 group">
+                                            <div className="w-2.5 h-2.5 rounded-full bg-[#f24026] mt-2 shrink-0 shadow-[0_0_10px_rgba(242,64,38,0.4)] group-hover:scale-125 transition-transform" />
                                             <div>
-                                                <h5 className="font-bold text-gray-900 text-sm mb-1 uppercase tracking-wider">{g.title}</h5>
+                                                <h5 className="font-bold text-gray-900 text-[0.9rem] mb-1 uppercase tracking-wider">{g.title}</h5>
                                                 <p className="text-gray-600 text-sm leading-relaxed">{g.desc}</p>
                                             </div>
                                         </div>
@@ -115,30 +118,49 @@ export default function EvaluatePage() {
                             </div>
                         </div>
 
-                        <div className="space-y-12">
-                            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-[#FFD0C9]">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wider">Valuation Factors</h3>
-                                <div className="space-y-6">
+                        {/* Right Column */}
+                        <div className="lg:sticky lg:top-32">
+                            <div className="bg-white p-10 rounded-[3rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-[#FFD0C9] relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-[#f24026]/5 rounded-bl-full" />
+                                <h3 className="text-2xl font-black text-gray-900 mb-10 uppercase tracking-widest border-b border-gray-100 pb-4">
+                                    Valuation <span className="text-[#f24026]">Factors</span>
+                                </h3>
+                                <div className="space-y-10">
                                     {[
-                                        { title: 'Mileage Assessment', desc: 'We assess how much mileage has the car done on the clock.' },
-                                        { title: 'General Condition', desc: 'A visual and mechanical inspection will give an overall view of how well the car has been looked after.' },
-                                        { title: 'Accident History', desc: 'We check if the car has been involved in any accidents or required any major repairs.' },
-                                        { title: 'Market Demand', desc: 'Simple supply and demand economics for each car model will affect the price.' }
+                                        { title: 'Mileage Assessment', desc: 'We assess how much mileage has the car done on the clock.', icon: '01' },
+                                        { title: 'General Condition', desc: 'A visual and mechanical inspection will give an overall view of how well the car has been looked after.', icon: '02' },
+                                        { title: 'Accident History', desc: 'We check if the car has been involved in any accidents or required any major repairs.', icon: '03' },
+                                        { title: 'Market Demand', desc: 'Simple supply and demand economics for each car model will affect the price.', icon: '04' }
                                     ].map(p => (
-                                        <div key={p.title}>
-                                            <h5 className="font-bold text-[#f24026] text-sm mb-1 uppercase">{p.title}</h5>
-                                            <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                                        <div key={p.title} className="flex gap-6">
+                                            <div className="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-lg">
+                                                {p.icon}
+                                            </div>
+                                            <div>
+                                                <h5 className="font-bold text-[#f24026] text-lg mb-2 uppercase">{p.title}</h5>
+                                                <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4 italic">&ldquo;Our Happy Customers&rdquo;</h2>
-                                <TestimonialCarousel />
-                            </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* ══════════════════════════════════════════════
+                TESTIMONIALS SECTION (Full Width)
+            ══════════════════════════════════════════════ */}
+            <section className="py-24 bg-white border-t border-gray-100">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight italic uppercase">
+                            &ldquo;Our Happy Customers&rdquo;
+                        </h2>
+                        <div className="w-24 h-1 bg-[#f24026] mx-auto rounded-full" />
+                    </div>
+                    <TestimonialCarousel />
                 </div>
             </section>
 

@@ -80,59 +80,80 @@ export default function AbuDhabiPage() {
             {/* ══════════════════════════════════════════════
                 MAIN CONTENT - ABU DHABI SPECIFIC
             ══════════════════════════════════════════════ */}
-            <section className="py-20 bg-[#FCF5F2]">
+            <section className="py-24 bg-[#FCF5F2]">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        {/* Left Column: Content + Guarantees */}
                         <div className="space-y-12">
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">How to Sell a Car in <span className="text-[#f24026]">Abu Dhabi</span></h2>
-                                <p className="text-gray-700 leading-relaxed text-lg">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">How to Sell a Car in <span className="text-[#f24026]">Abu Dhabi</span></h2>
+                                <p className="text-gray-700 leading-relaxed text-[1.05rem]">
                                     With so many options, you need to stand out from the crowd of other sellers in Abu Dhabi who also sell similar cars. At the end of the day, you have to decide whether to sell privately or take the easiest route and accept a dealer&apos;s price. You can sell a car in Abu Dhabi privately in various ways. You might find several websites if you search &lsquo;sell car Abu Dhabi&rsquo; or &lsquo;sell my car Abu Dhabi&rsquo; online.
                                 </p>
                             </div>
                             
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase">Cash Your Car in Abu Dhabi at the Right Price</h2>
-                                <p className="text-gray-700 leading-relaxed mb-6">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">Cash Your Car in Abu Dhabi <span className="text-[#f24026]">at the Right Price</span></h2>
+                                <p className="text-gray-700 leading-relaxed mb-8">
                                     Expat Car Buyers aims to provide you with the quickest, simplest, and most straightforward approach to finish the deal reasonably and on time. We are the only company in the market that will buy any car in any condition so that you can sell any car to us for a fast cash offer.
                                 </p>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                                     {['Simple approach', 'Fully secure', '100% transparency', 'Definite purchase'].map(g => (
-                                        <div key={g} className="flex items-center gap-3 font-bold text-gray-800 text-sm">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[#f24026]" /> {g}
+                                        <div key={g} className="flex items-center gap-3 font-bold text-gray-800">
+                                            <div className="w-2.5 h-2.5 rounded-full bg-[#f24026] shadow-[0_0_10px_rgba(242,64,38,0.4)]" /> 
+                                            {g}
                                         </div>
                                     ))}
+                                </div>
+                                <div className="mt-12 rounded-3xl overflow-hidden shadow-2xl border border-white/50">
+                                    <img src="/front/images/our-gurantee-right.webp" alt="Our Guarantee Abu Dhabi" className="w-full h-auto" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="space-y-12">
-                            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-[#FFD0C9]">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wider">The Selling Procedure</h3>
-                                <div className="space-y-6">
+                        {/* Right Column: Method Box */}
+                        <div className="lg:sticky lg:top-32">
+                            <div className="bg-white p-10 rounded-[3rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-[#FFD0C9] relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-[#f24026]/5 rounded-bl-full" />
+                                <h3 className="text-2xl font-black text-gray-900 mb-10 uppercase tracking-widest border-b border-gray-100 pb-4">
+                                    The <span className="text-[#f24026]">Procedure</span>
+                                </h3>
+                                <div className="space-y-10">
                                     {[
-                                        { title: 'Entirely free valuation and Quote', desc: 'We assign you a custom quote according to the current market price and the vehicle\'s actual condition.' },
-                                        { title: 'Transfer ownership', desc: 'If you proceed with the offer, we\'ll take the ownership from you.' },
-                                        { title: 'Payment clearance', desc: 'Most importantly, we also clear vehicle debt and set it with a reasonable margin.' },
-                                        { title: 'Super-fast payment', desc: 'We will go with any of your choice, a bank transfer, cheque, etc. in a maximum of 30minutes.' }
+                                        { title: 'Entirely free valuation and Quote', desc: 'We assign you a custom quote according to the current market price and the vehicle\'s actual condition.', icon: '01' },
+                                        { title: 'Transfer ownership', desc: 'If you proceed with the offer, we\'ll take the ownership from you.', icon: '02' },
+                                        { title: 'Payment clearance', desc: 'Most importantly, we also clear vehicle debt and set it with a reasonable margin.', icon: '03' },
+                                        { title: 'Super-fast payment', desc: 'We will go with any of your choice, a bank transfer, cheque, etc. in a maximum of 30minutes.', icon: '04' }
                                     ].map(p => (
-                                        <div key={p.title}>
-                                            <h5 className="font-bold text-[#f24026] text-sm mb-1">{p.title}</h5>
-                                            <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                                        <div key={p.title} className="flex gap-6">
+                                            <div className="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-lg">
+                                                {p.icon}
+                                            </div>
+                                            <div>
+                                                <h5 className="font-bold text-[#f24026] text-lg mb-2">{p.title}</h5>
+                                                <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-4 italic">&ldquo;Why should I choose Expat Car Buyers in Abu Dhabi?&rdquo;</h2>
-                                <p className="text-gray-600 mb-6">
-                                    We often offer the highest price on the market because we respect the seller&apos;s time and want to buy their car. Additionally, we can settle your mortgage with your bank or another lender.
-                                </p>
-                                <TestimonialCarousel />
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* ══════════════════════════════════════════════
+                TESTIMONIALS SECTION (Full Width)
+            ══════════════════════════════════════════════ */}
+            <section className="py-24 bg-white border-t border-gray-100">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight italic uppercase">
+                            &ldquo;Why should I choose Expat Car Buyers in <span className="text-[#f24026]">Abu Dhabi?</span>&rdquo;
+                        </h2>
+                        <div className="w-24 h-1 bg-[#f24026] mx-auto rounded-full" />
+                    </div>
+                    <TestimonialCarousel />
                 </div>
             </section>
 

@@ -131,12 +131,12 @@ export default function SellMyCarDubaiPage() {
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div className="relative">
-                            <img src="/front/images/X3.webp" alt="Car in Dubai" className="rounded-3xl shadow-2xl relative z-10" />
+                            <img src="/front/images/X3.webp" alt="Car in Dubai" className="rounded-[3rem] shadow-2xl relative z-10 border border-white/10" />
                             <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#f24026]/20 blur-3xl rounded-full" />
                         </div>
                         
                         <div>
-                            <h2 className="text-3xl font-black mb-12 uppercase leading-tight">
+                            <h2 className="text-3xl font-black mb-12 uppercase leading-tight tracking-tight">
                                 Why Trust Us to Sell <br />
                                 <span className="text-[#f24026]">Used Car in Dubai?</span>
                             </h2>
@@ -149,7 +149,7 @@ export default function SellMyCarDubaiPage() {
                                     { t: '20 Years of Experience', d: 'Extensive market knowledge ensures you get the best possible price for your vehicle in today&apos;s market.' }
                                 ].map(f => (
                                     <div key={f.t} className="flex gap-6">
-                                        <div className="w-2 h-2 rounded-full bg-[#f24026] mt-2 shrink-0" />
+                                        <div className="w-2.5 h-2.5 rounded-full bg-[#f24026] mt-2 shrink-0 shadow-[0_0_10px_rgba(242,64,38,0.6)]" />
                                         <div>
                                             <h4 className="font-bold text-lg mb-2 uppercase tracking-wide">{f.t}</h4>
                                             <p className="text-gray-400 text-sm leading-relaxed">{f.d}</p>
@@ -163,11 +163,16 @@ export default function SellMyCarDubaiPage() {
             </section>
 
             {/* ══════════════════════════════════════════════
-                TESTIMONIALS
+                TESTIMONIALS SECTION (Full Width)
             ══════════════════════════════════════════════ */}
-            <section className="py-24 bg-white">
-                <div className="max-w-6xl mx-auto px-4 md:px-8 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-16 uppercase tracking-widest italic">&ldquo;What our Dubai clients say&rdquo;</h2>
+            <section className="py-24 bg-white border-t border-gray-100">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight italic uppercase">
+                            &ldquo;What our Dubai clients say&rdquo;
+                        </h2>
+                        <div className="w-24 h-1 bg-[#f24026] mx-auto rounded-full" />
+                    </div>
                     <TestimonialCarousel />
                 </div>
             </section>
