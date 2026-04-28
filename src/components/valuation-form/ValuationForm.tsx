@@ -28,6 +28,7 @@ const formSchema = z.object({
     model_id: z.string().min(1, "Model is required"),
     variant_id: z.string().min(1, "Variant is required"),
     mileage: z.string().min(1, "Mileage is required"),
+    specs: z.string().min(1, "Regional spec is required"),
     name: z.string().min(2, "Name is required"),
     phone: z.string().min(8, "Phone is required"),
     email: z.string().email("Valid email is required"),
@@ -62,6 +63,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
             model_id: initialModelId || "",
             variant_id: "",
             mileage: "",
+            specs: "GCC",
             name: "",
             phone: "",
             email: "",
@@ -314,16 +316,61 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                 className="space-y-6"
                             >
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-800 font-bold">
+                                    <label className="text-sm font-medium text-gray-800 font-bold flex items-center gap-2">
                                         <Search className="w-4 h-4 text-[#f24026]" /> Mileage (KM)
                                     </label>
-                                    <input
-                                        type="number"
+                                    <select
                                         {...form.register('mileage')}
-                                        placeholder="e.g. 24000"
                                         className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#f24026]/20 focus:border-[#f24026] transition text-gray-900"
-                                    />
+                                    >
+                                        <option value="">Select Mileage</option>
+                                        <option value="0 - 10,000">0 - 10,000 km</option>
+                                        <option value="10,000 - 20,000">10,000 - 20,000 km</option>
+                                        <option value="20,000 - 30,000">20,000 - 30,000 km</option>
+                                        <option value="30,000 - 40,000">30,000 - 40,000 km</option>
+                                        <option value="40,000 - 50,000">40,000 - 50,000 km</option>
+                                        <option value="50,000 - 60,000">50,000 - 60,000 km</option>
+                                        <option value="60,000 - 80,000">60,000 - 80,000 km</option>
+                                        <option value="80,000 - 100,000">80,000 - 100,000 km</option>
+                                        <option value="100,000 - 120,000">100,000 - 120,000 km</option>
+                                        <option value="120,000 - 150,000">120,000 - 150,000 km</option>
+                                        <option value="150,000 - 200,000">150,000 - 200,000 km</option>
+                                        <option value="200,000+">200,000+ km</option>
+                                    </select>
                                     {errors.mileage && <p className="text-xs text-red-500">{errors.mileage.message}</p>}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-800 font-bold flex items-center gap-2">
+                                        <Car className="w-4 h-4 text-[#f24026]" /> Regional Specs
+                                    </label>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <button
+                                            type="button"
+                                            onClick={() => setValue('specs', 'GCC')}
+                                            className={cn(
+                                                "py-3 px-4 rounded-xl border-2 transition font-bold text-sm",
+                                                watch('specs') === 'GCC' 
+                                                    ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
+                                                    : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
+                                            )}
+                                        >
+                                            GCC Spec
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setValue('specs', 'NON-GCC')}
+                                            className={cn(
+                                                "py-3 px-4 rounded-xl border-2 transition font-bold text-sm",
+                                                watch('specs') === 'NON-GCC' 
+                                                    ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
+                                                    : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
+                                            )}
+                                        >
+                                            NON-GCC
+                                        </button>
+                                    </div>
+                                    {errors.specs && <p className="text-xs text-red-500">{errors.specs.message}</p>}
                                 </div>
                             </motion.div>
                         )}
