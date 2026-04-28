@@ -33,18 +33,15 @@ export default function AbuDhabiPage() {
                             </p>
                         </div>
                         
-                        <div className="wow fadeInLeft relative" data-wow-delay="0.3s">
-                            {/* Background Blob */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#f24026]/10 rounded-full blur-[100px] -z-10 animate-pulse" />
-                            <div 
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-[#FFD0C9]/40 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] -z-5" 
-                                style={{ animation: 'blob-morph 10s ease-in-out infinite' }}
-                            />
+                        <div className="relative mt-8 md:mt-0 wow zoomIn" data-wow-delay="0.3s">
+                            {/* Static Premium Background */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[75%] bg-[#FFD0C9]/40 rounded-[50%_50%_40%_60%] -z-5" />
                             
                             <img
                                 src="/front/images/X5.webp" 
                                 alt="Sell My Car Abu Dhabi"
-                                className="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.2)] relative z-10 scale-110"
+                                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 scale-110"
                             />
                         </div>
                     </div>
