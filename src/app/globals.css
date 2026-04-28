@@ -52,6 +52,65 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
   padding: 60px 0 180px;
 }
 
+/* New Landing Hero (Light Theme + Blob) */
+.landing-hero {
+  position: relative;
+  min-height: 550px;
+  background: linear-gradient(135deg, #ffffff 0%, #fef8f7 100%);
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.landing-hero-blob {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 450px;
+  height: 400px;
+  background: #FFD0C9;
+  filter: blur(80px);
+  opacity: 0.4;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.landing-hero-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .landing-hero-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.landing-hero-content {
+  flex: 1;
+  max-width: 580px;
+}
+
+.landing-hero-form {
+  flex: 0 0 450px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.12);
+  padding: 30px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
 @keyframes hero-pan {
   from { background-position: 0 bottom; }
   to   { background-position: 100vw bottom; }
