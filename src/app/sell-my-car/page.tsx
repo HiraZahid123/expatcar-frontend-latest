@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import ValuationForm from '@/components/valuation-form/ValuationForm';
+import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
 export const metadata: Metadata = {
@@ -183,19 +184,7 @@ export default function SellMyCarDubaiPage() {
             <section className="py-24 bg-[#FCF5F2]">
                 <div className="max-w-4xl mx-auto px-4 md:px-8">
                     <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">Frequently Asked Questions</h2>
-                    <div className="space-y-6">
-                        {[
-                            { q: 'What documents are required to sell a car in Dubai?', a: 'You will need: Original vehicle registration card (Mulkiya), Copy of your Emirates ID, Passport and visa copy, and Vehicle insurance.' },
-                            { q: 'How to sell car with loan in Dubai?', a: 'Obtain the current outstanding balance from your finance company. Use the sale proceeds to settle the loan, and we will handle the clearance letter and transfer.' },
-                            { q: 'Can I sell my car in Dubai after visa cancellation?', a: 'Yes, provided you have the proper documentation. We can coordinate the ownership transfer even after visa cancellation.' },
-                            { q: 'How do I transfer ownership of a car in Dubai?', a: 'Typically involves RTA centers and takes hours. However, as an authorized RTA partner, we can transfer ownership in our office in under 5 minutes.' }
-                        ].map((faq, i) => (
-                            <div key={i} className="bg-white p-8 rounded-3xl border border-[#FFD0C9]">
-                                <h4 className="font-bold text-gray-900 mb-4">{faq.q}</h4>
-                                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-                            </div>
-                        ))}
-                    </div>
+                    <FAQAccordion />
                 </div>
             </section>
         </main>

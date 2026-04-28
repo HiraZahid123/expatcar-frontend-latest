@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import ValuationForm from '@/components/valuation-form/ValuationForm';
+import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
 export const metadata: Metadata = {
@@ -35,7 +36,7 @@ export default function AbuDhabiPage() {
                         <div className="relative mt-8 md:mt-0 wow zoomIn" data-wow-delay="0.3s">
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
                             <img
-                                src="/front/images/Mustang.webp" 
+                                src="/front/images/X5.webp" 
                                 alt="Sell My Car Abu Dhabi"
                                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10"
                             />
@@ -48,6 +49,46 @@ export default function AbuDhabiPage() {
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
                         <ValuationForm />
+                    </div>
+                </div>
+            </section>
+
+            {/* ══════════════════════════════════════════════
+                THE ENTIRE SELLING PROCEDURE IS EASY, QUICK, AND BENEFICIAL!
+            ══════════════════════════════════════════════ */}
+            <section className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16 wow fadeInUp">
+                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-tight leading-tight">
+                            THE ENTIRE SELLING PROCEDURE IS<br/>
+                            <span className="text-[#f24026]">EASY, QUICK, AND BENEFICIAL!</span>
+                        </h2>
+                        <div className="w-24 h-1 bg-[#f24026] mx-auto mt-6 rounded-full" />
+                    </div>
+                    
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100 bg-[#FCF5F2] p-8 md:p-12 wow zoomIn" data-wow-delay="0.2s">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div className="space-y-6">
+                                <h3 className="text-2xl font-bold text-gray-900 leading-snug">
+                                    Selling your car shouldn't be a chore. We've optimized every step to save you time and maximize your value.
+                                </h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    From the moment you request an online valuation to the final payment, our process is designed for transparency. No hidden fees, no complicated paperwork, and no waiting weeks for your money.
+                                </p>
+                                <div className="flex flex-wrap gap-4 pt-4">
+                                    <span className="px-6 py-3 bg-white rounded-full text-sm font-bold text-gray-700 shadow-sm border border-gray-50">✓ 30-Minute Process</span>
+                                    <span className="px-6 py-3 bg-white rounded-full text-sm font-bold text-gray-700 shadow-sm border border-gray-50">✓ Instant Cash Payment</span>
+                                    <span className="px-6 py-3 bg-white rounded-full text-sm font-bold text-gray-700 shadow-sm border border-gray-50">✓ Free RTA Handling</span>
+                                </div>
+                            </div>
+                            <div className="relative">
+                                <img 
+                                    src="/front/images/selling-procedure.png" 
+                                    alt="Selling Procedure Graphic" 
+                                    className="w-full h-auto rounded-2xl"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -177,6 +218,15 @@ export default function AbuDhabiPage() {
                             </p>
                         </div>
                     </div>
+                </div>
+            </section>
+            {/* ══════════════════════════════════════════════
+                FAQ SECTION
+            ══════════════════════════════════════════════ */}
+            <section className="py-24 bg-[#FCF5F2]">
+                <div className="max-w-4xl mx-auto px-4 md:px-8">
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">Frequently Asked Questions</h2>
+                    <FAQAccordion />
                 </div>
             </section>
         </main>

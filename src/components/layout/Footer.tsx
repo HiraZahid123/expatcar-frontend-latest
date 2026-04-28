@@ -121,7 +121,6 @@ export default function Footer() {
                                 <ul className="space-y-2">
                                     {[
                                         { label: 'Home', href: '/' },
-                                        { label: 'Sell My Car (Dubai)', href: '/sell-my-car' },
                                         { label: 'Sell Car in Sharjah', href: '/sell-my-sharjah' },
                                         { label: 'Sell Car in Abu Dhabi', href: '/sell-my-abu-dhabi' },
                                         { label: 'Evaluate My Car', href: '/evaluate-my-car' },

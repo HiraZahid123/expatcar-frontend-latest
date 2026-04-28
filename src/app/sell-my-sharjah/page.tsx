@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import ValuationForm from '@/components/valuation-form/ValuationForm';
+import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
 export const metadata: Metadata = {
@@ -164,6 +165,15 @@ export default function SharjahPage() {
                         <div className="w-24 h-1 bg-[#f24026] mx-auto rounded-full" />
                     </div>
                     <TestimonialCarousel />
+                </div>
+            </section>
+            {/* ══════════════════════════════════════════════
+                FAQ SECTION
+            ══════════════════════════════════════════════ */}
+            <section className="py-24 bg-[#FCF5F2]">
+                <div className="max-w-4xl mx-auto px-4 md:px-8">
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">Frequently Asked Questions</h2>
+                    <FAQAccordion />
                 </div>
             </section>
         </main>

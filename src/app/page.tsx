@@ -326,7 +326,7 @@ export default function Home() {
                     <h2 className="text-center text-2xl md:text-3xl font-bold text-gray-900 mb-10">
                         Frequently <span className="text-[#f24026]">Asked Questions</span>
                     </h2>
-                    <div className="max-w-3xl mx-auto">
+                    <div className="max-w-4xl mx-auto">
                         <FAQAccordion />
                     </div>
                 </div>
