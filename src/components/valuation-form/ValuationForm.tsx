@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -59,6 +59,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     const [copied, setCopied] = useState(false);
     const [utmData, setUtmData] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState({ makes: false, models: false, variants: false });
+    const cache = useRef<Record<string, any>>({});
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -126,10 +127,16 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     };
 
     const fetchMakes = async (year: string) => {
+        if (cache.current[`makes_${year}`]) {
+            setMakes(cache.current[`makes_${year}`]);
+            return;
+        }
         setLoading(prev => ({ ...prev, makes: true }));
         try {
             const res = await api.get(`/makes?year=${year}`);
-            setMakes(res.data.data);
+            const data = res.data.data;
+            setMakes(data);
+            cache.current[`makes_${year}`] = data;
         } catch (e) {
             console.error("Error fetching makes", e);
         } finally {
@@ -138,10 +145,17 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     };
 
     const fetchModels = async (makeId: string, year: string) => {
+        const cacheKey = `models_${makeId}_${year}`;
+        if (cache.current[cacheKey]) {
+            setModels(cache.current[cacheKey]);
+            return;
+        }
         setLoading(prev => ({ ...prev, models: true }));
         try {
             const res = await api.get(`/models?make_id=${makeId}&year=${year}`);
-            setModels(res.data.data);
+            const data = res.data.data;
+            setModels(data);
+            cache.current[cacheKey] = data;
         } catch (e) {
             console.error("Error fetching models", e);
         } finally {
@@ -150,10 +164,17 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     };
 
     const fetchVariants = async (modelId: string, year: string) => {
+        const cacheKey = `variants_${modelId}_${year}`;
+        if (cache.current[cacheKey]) {
+            setVariants(cache.current[cacheKey]);
+            return;
+        }
         setLoading(prev => ({ ...prev, variants: true }));
         try {
             const res = await api.get(`/variants?model_id=${modelId}&year=${year}`);
-            setVariants(res.data.data);
+            const data = res.data.data;
+            setVariants(data);
+            cache.current[cacheKey] = data;
         } catch (e) {
             console.error("Error fetching variants", e);
         } finally {
