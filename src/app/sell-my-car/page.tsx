@@ -36,7 +36,7 @@ export default function SellMyCarDubaiPage() {
                         <div className="relative mt-8 md:mt-0 wow zoomIn" data-wow-delay="0.3s">
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
                             <img
-                                src="/front/images/Mustang.webp" 
+                                src="/front/images/X6.webp" 
                                 alt="Sell My Car Dubai"
                                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10"
                             />
