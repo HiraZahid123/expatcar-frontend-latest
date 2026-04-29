@@ -87,31 +87,42 @@ export default function SharjahPage() {
             ══════════════════════════════════════════════ */}
             <section className="py-20 bg-white">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                        <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-8 uppercase tracking-wider">How to Sell Car in Sharjah?</h2>
-                            <div className="prose prose-lg text-gray-600 max-w-none space-y-6 mb-12">
+                    <div className="orangebg mb-20">
+                        <div className="inrwekeepcontentwrap">
+                            <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">How to Sell Car in Sharjah</h2>
+                            <div className="prose prose-lg text-white max-w-none space-y-6 mb-12">
                                 <p>
                                     Are you looking to sell your car in Sharjah? Expat Car Buyers can help make the process quick and hassle-free. As one of the leading car buyers in Sharjah, we offer a seamless and transparent process to help you sell your car.
                                 </p>
                                 <p>
-                                    Simply search for &ldquo;sell my car Sharjah&rdquo; or &ldquo;sell car Sharjah&rdquo; online and you will find numerous options. However, it&apos;s important to choose a reputable and trustworthy car buyer that can offer you the best price. That&apos;s where we can help.
+                                    To sell your car in Sharjah, you can simply search for &ldquo;sell my car Sharjah&rdquo; or &ldquo;sell car Sharjah&rdquo; online and you will find numerous options available. However, it&apos;s important to choose a reputable and trustworthy car buyer that can offer you the best price for your car. That&rsquo;s where we can help.
                                 </p>
                                 <p>
-                                    At Expat Car Buyers, we buy any car in Sharjah, regardless of its make, model, or condition. Whether you have a luxury car, a SUV, or a sedan, we are interested in buying it. We offer a fair and competitive price for your vehicle, ensuring that you get the best value for your car.
+                                    At Expat Car Buyers, we make the process of selling your car in Sharjah easy and convenient. We offer a free car valuation service, where our experts will evaluate your car&apos;s condition and provide you with a fair and competitive price. You can then choose to sell your car to us for cash, with no hidden fees or charges.
                                 </p>
                             </div>
 
-                            <h2 className="text-3xl font-bold text-gray-900 mb-8 uppercase tracking-wider">Sell Car in Sharjah at the right price</h2>
-                            <div className="prose prose-lg text-gray-600 max-w-none space-y-6">
+                            <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">Sell Car in Sharjah at the right price</h2>
+                            <div className="prose prose-lg text-white max-w-none space-y-6">
                                 <p>
-                                    Our process is simple and straightforward. You can start by filling out our online form to get a free valuation of your car. Our team of experts will then review your car&apos;s details and provide you with an estimated price. If you are happy with the price, we will arrange a physical inspection of your car at a time and location that is convenient for you.
+                                    Selling your car in Sharjah can be a daunting task, especially if you&apos;re not sure how to get the best price. At Expat Car Buyers, we understand that getting the right price for your car is important, which is why we offer a hassle-free and transparent process to help you sell your car in Sharjah.
                                 </p>
                                 <p>
-                                    During the inspection, our team will thoroughly check your car&apos;s condition and provide you with a final offer. If you accept the offer, we will take care of all the paperwork and transfer the payment to you immediately. We also handle the transfer of ownership, making the process stress-free for you.
+                                    We offer a convenient online service where you can easily sell car online Sharjah. Simply visit our website and fill out our online form to get a free car valuation. If you&apos;re happy with the price we offer, we&apos;ll buy your car for cash. We are the best &ldquo;Cash Car Sharjah&rdquo; team to consider.
                                 </p>
                                 <p>
-                                    So, if you are looking to &ldquo;sell any car Sharjah&rdquo; or &ldquo;sell my car online Sharjah,&rdquo; look no further than Expat Car Buyers. Contact us today to get started and sell your car in Sharjah for the best price.
+                                    Our team of experienced car experts will evaluate your car&apos;s condition, mileage, and other factors to determine the best price for your car. We provide a &ldquo;cash my car Sharjah&rdquo; service, where we can pay you cash on the spot for your car.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        <div>
+                            <div className="bg-[#FCF5F2] p-10 rounded-[3rem] border border-[#FFD0C9]">
+                                <h3 className="text-2xl font-black text-gray-900 mb-6 uppercase tracking-tight">Expert Local Support</h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    Our Sharjah team is specialized in the local market, ensuring you get the most accurate valuation and fastest service in the city. From Muwailih to Al Majaz, we cover all areas.
                                 </p>
                             </div>
                         </div>
@@ -124,9 +135,9 @@ export default function SharjahPage() {
                                 </h3>
                                 <div className="space-y-10">
                                     {[
-                                        { title: 'Comprehensive Car Valuation', desc: 'Once you bring your car to one of our showrooms, we will do a comprehensive valuation. Then we price it according to market value.', icon: '01' },
+                                        { title: 'Comprehensive Car Valuation', desc: 'Once you bring your car to one of our showrooms, we will do a comprehensive valuation. Then we price it according to the current market value.', icon: '01' },
                                         { title: 'Ownership Transfer', desc: 'We will take care of all the ownership transfer documents. You just need to sign our agreement.', icon: '02' },
-                                        { title: 'Finance Settlement', desc: 'If your car is under finance, we will be able to settle it in the best possible way. You don’t have to worry about it.', icon: '03' },
+                                        { title: 'Finance Settlement', desc: 'If your car is under finance, we will be able to settle it in the best possible way. You don’t have to worry about settling it on your own.', icon: '03' },
                                         { title: 'Get paid in 30 minutes', desc: 'We ensure that you will be paid in cash for the value of your car within just 30 minutes!', icon: '04' }
                                     ].map(p => (
                                         <div key={p.title} className="flex gap-6">

@@ -2,9 +2,9 @@ import React from 'react';
 
 const PriceIncludedSection: React.FC = () => {
   const items = [
+    { name: 'Paper checking', originalPrice: null },
+    { name: 'Car inspection', originalPrice: null },
     { name: 'Consultant fee', originalPrice: null },
-    { name: 'Car evaluation', originalPrice: '$22.99' },
-    { name: 'Car inspection', originalPrice: '$22.99' },
   ];
 
   return (

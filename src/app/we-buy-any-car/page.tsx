@@ -85,26 +85,25 @@ export default function WeBuyAnyCarPage() {
                 </div>
             </section>
 
-            {/* ══════════════════════════════════════════════
-                MAIN CONTENT - DUBAI SPECIFIC
-            ══════════════════════════════════════════════ */}
-            <section className="py-24 bg-[#FCF5F2]">
+            <section className="py-24 bg-white">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="orangebg mb-20">
+                        <div className="inrwekeepcontentwrap">
+                            <h2 className="text-3xl font-bold mb-6 uppercase tracking-wider">We Buy Any Car in <span className="text-white">Dubai</span></h2>
+                            <div className="prose prose-lg text-white max-w-none space-y-4 mb-10">
+                                <p>
+                                    As we provide the best car selling services in Dubai, we make sure to keep the car buying deal professional and negotiable enough for both parties to agree. Most importantly we make sure that your cash is ready as soon as the deal is being made.
+                                </p>
+                                <p>
+                                    Once you contact us and your car is being evaluated, we give you a reasonable price that is valid for one week. In this week, we do not care if the market goes down, our end of the deal is always kept.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                         {/* Left Column */}
                         <div className="space-y-12">
-                            <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">We Buy Any Car in <span className="text-[#f24026]">Dubai</span></h2>
-                                <div className="space-y-4 text-gray-700 leading-relaxed text-[1.05rem]">
-                                    <p>
-                                        As we provide the best car selling services in Dubai, we make sure to keep the car buying deal professional and negotiable enough for both parties to agree. Most importantly we make sure that your cash is ready as soon as the deal is being made.
-                                    </p>
-                                    <p>
-                                        Once you contact us and your car is being evaluated, we give you a reasonable price that is valid for one week. In this week, we do not care if the market goes down, our end of the deal is always kept.
-                                    </p>
-                                </div>
-                            </div>
-                            
                             <div>
                                 <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">Our <span className="text-[#f24026]">Guarantees</span></h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
@@ -121,6 +120,7 @@ export default function WeBuyAnyCarPage() {
                                     ))}
                                 </div>
                             </div>
+                        </div>
                         </div>
 
                         {/* Right Column */}
