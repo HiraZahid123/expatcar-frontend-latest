@@ -121,7 +121,6 @@ export default function WeBuyAnyCarPage() {
                                 </div>
                             </div>
                         </div>
-                        </div>
 
                         {/* Right Column */}
                         <div className="lg:sticky lg:top-32">
