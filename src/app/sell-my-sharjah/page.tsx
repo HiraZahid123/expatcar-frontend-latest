@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import ValuationForm from '@/components/valuation-form/ValuationForm';
 import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
+import PriceIncludedSection from '@/components/PriceIncludedSection';
 
 export const metadata: Metadata = {
     title: 'Sell Any Car in Sharjah | Sell Your Car Across Sharjah in 30 Minutes',
@@ -82,50 +83,39 @@ export default function SharjahPage() {
             </section>
 
             {/* ══════════════════════════════════════════════
-                MAIN CONTENT - SHARJAH SPECIFIC
+                SEO CONTENT SECTION
             ══════════════════════════════════════════════ */}
-            <section className="py-24 bg-[#FCF5F2]">
+            <section className="py-20 bg-white">
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                        {/* Left Column: Content + Guarantees */}
-                        <div className="space-y-12">
-                            <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">How to Sell Car in <span className="text-[#f24026]">Sharjah</span></h2>
-                                <div className="space-y-4 text-gray-700 leading-relaxed text-[1.05rem]">
-                                    <p>
-                                        Are you looking to sell your car in Sharjah? Expat Car Buyers can help make the process quick and hassle-free. As one of the leading car buyers in Sharjah, we offer a seamless and transparent process to help you sell your car.
-                                    </p>
-                                    <p>
-                                        Simply search for &ldquo;sell my car Sharjah&rdquo; or &ldquo;sell car Sharjah&rdquo; online and you will find numerous options. However, it&apos;s important to choose a reputable and trustworthy car buyer that can offer you the best price. That&apos;s where we can help.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">Sell Car in Sharjah <span className="text-[#f24026]">at the right price</span></h2>
-                                <p className="text-gray-700 leading-relaxed mb-8">
-                                    Selling your car in Sharjah can be a daunting task, especially if you&apos;re not sure how to get the best price. At Expat Car Buyers, we understand that getting the right price for your car is important.
+                        <div>
+                            <h2 className="text-3xl font-bold text-gray-900 mb-8 uppercase tracking-wider">How to Sell Car in Sharjah?</h2>
+                            <div className="prose prose-lg text-gray-600 max-w-none space-y-6 mb-12">
+                                <p>
+                                    Are you looking to sell your car in Sharjah? Expat Car Buyers can help make the process quick and hassle-free. As one of the leading car buyers in Sharjah, we offer a seamless and transparent process to help you sell your car.
                                 </p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
-                                    {[
-                                        'Guaranteed purchase',
-                                        'Sell fast minimum hassle',
-                                        'Paid within 30 minutes',
-                                        'Finance settlement'
-                                    ].map(g => (
-                                        <div key={g} className="flex items-center gap-3 font-bold text-gray-800">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-[#f24026] shadow-[0_0_10px_rgba(242,64,38,0.4)]" /> 
-                                            {g}
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="mt-12 rounded-3xl overflow-hidden shadow-2xl border border-white/50">
-                                    <img src="/front/images/our-gurantee-right.webp" alt="Our Guarantee Sharjah" className="w-full h-auto" />
-                                </div>
+                                <p>
+                                    Simply search for &ldquo;sell my car Sharjah&rdquo; or &ldquo;sell car Sharjah&rdquo; online and you will find numerous options. However, it&apos;s important to choose a reputable and trustworthy car buyer that can offer you the best price. That&apos;s where we can help.
+                                </p>
+                                <p>
+                                    At Expat Car Buyers, we buy any car in Sharjah, regardless of its make, model, or condition. Whether you have a luxury car, a SUV, or a sedan, we are interested in buying it. We offer a fair and competitive price for your vehicle, ensuring that you get the best value for your car.
+                                </p>
+                            </div>
+
+                            <h2 className="text-3xl font-bold text-gray-900 mb-8 uppercase tracking-wider">Sell Car in Sharjah at the right price</h2>
+                            <div className="prose prose-lg text-gray-600 max-w-none space-y-6">
+                                <p>
+                                    Our process is simple and straightforward. You can start by filling out our online form to get a free valuation of your car. Our team of experts will then review your car&apos;s details and provide you with an estimated price. If you are happy with the price, we will arrange a physical inspection of your car at a time and location that is convenient for you.
+                                </p>
+                                <p>
+                                    During the inspection, our team will thoroughly check your car&apos;s condition and provide you with a final offer. If you accept the offer, we will take care of all the paperwork and transfer the payment to you immediately. We also handle the transfer of ownership, making the process stress-free for you.
+                                </p>
+                                <p>
+                                    So, if you are looking to &ldquo;sell any car Sharjah&rdquo; or &ldquo;sell my car online Sharjah,&rdquo; look no further than Expat Car Buyers. Contact us today to get started and sell your car in Sharjah for the best price.
+                                </p>
                             </div>
                         </div>
 
-                        {/* Right Column: Method Box */}
                         <div className="lg:sticky lg:top-32">
                             <div className="bg-white p-10 rounded-[3rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-[#FFD0C9] relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#f24026]/5 rounded-bl-full" />
@@ -152,6 +142,45 @@ export default function SharjahPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ══════════════════════════════════════════════
+                PRICE INCLUDED (Red Block)
+            ══════════════════════════════════════════════ */}
+            <PriceIncludedSection />
+
+            {/* ══════════════════════════════════════════════
+                OUR GUARANTEES (4-Column Grid)
+            ══════════════════════════════════════════════ */}
+            <section className="py-24 bg-[#1a1a1a] text-white">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tight">Our Guarantees</h2>
+                        <div className="w-24 h-1 bg-[#f24026] mx-auto rounded-full" />
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {[
+                            'A guaranteed quick and hassle-free sale',
+                            'Secure finance settlement',
+                            'On the spot cash in hand payment',
+                            'Safe, secure and trusted process',
+                            'All RTA paperwork taken care of for you',
+                            '0 hidden or unforeseen costs',
+                            'No obligation No pressure quote',
+                            'Free professional car inspection'
+                        ].map((item, idx) => (
+                            <div key={idx} className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                                <div className="flex-shrink-0 w-8 h-8 bg-[#f24026] rounded-full flex items-center justify-center">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.6666 5L7.49992 14.1667L3.33325 10" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p className="text-sm font-medium leading-relaxed">{item}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

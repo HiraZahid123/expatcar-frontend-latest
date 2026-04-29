@@ -36,11 +36,21 @@ export default function RootLayout({
                 <Script src="/front/js/wow.min.js" strategy="afterInteractive" />
                 <Script id="init-wow" strategy="afterInteractive">
                     {`
-                        window.addEventListener('load', function() {
-                            if (typeof WOW !== 'undefined') {
+                        function initWOW() {
+                            if (typeof WOW !== 'undefined' && window.location.pathname === '/') {
                                 new WOW({ animateClass: 'animated', offset: 100 }).init();
+                            } else {
+                                // Force visibility for .wow elements if WOW is not initialized
+                                const style = document.createElement('style');
+                                style.innerHTML = '.wow { visibility: visible !important; animation: none !important; }';
+                                document.head.appendChild(style);
                             }
-                        });
+                        }
+                        if (document.readyState === 'complete') {
+                            initWOW();
+                        } else {
+                            window.addEventListener('load', initWOW);
+                        }
                     `}
                 </Script>
             </body>

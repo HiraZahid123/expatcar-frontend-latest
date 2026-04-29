@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 /* ─── Navigation Data ────────────────────────────────────────── */
 const navItems = [
@@ -55,6 +56,8 @@ const WhatsAppIcon = () => (
 
 /* ─── Header Component ───────────────────────────────────────── */
 export default function Header() {
+    const pathname = usePathname();
+    const isHome = pathname === '/';
     const [mobileOpen, setMobileOpen] = useState(false);
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
     const [scrolled, setScrolled] = useState(false);
@@ -142,9 +145,9 @@ export default function Header() {
                             aria-label="Toggle menu"
                             aria-expanded={mobileOpen}
                         >
-                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all duration-300 origin-center ${mobileOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
-                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all duration-300 origin-center ${mobileOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all origin-center ${mobileOpen ? 'rotate-45 translate-y-[7px]' : ''}`} style={{ transitionDuration: isHome ? '300ms' : '0ms' }} />
+                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} style={{ transitionDuration: isHome ? '300ms' : '0ms' }} />
+                            <span className={`block h-0.5 w-6 bg-gray-800 transition-all origin-center ${mobileOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} style={{ transitionDuration: isHome ? '300ms' : '0ms' }} />
                         </button>
                     </div>
                 </div>
@@ -200,8 +203,8 @@ export default function Header() {
 
             {/* ══ MOBILE MENU ══ */}
             <div
-                className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0'}`}
-                style={{ background: '#f24026' }}
+                className={`lg:hidden overflow-hidden transition-all ease-in-out ${mobileOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0'}`}
+                style={{ background: '#f24026', transitionDuration: isHome ? '300ms' : '0ms' }}
             >
                 <div className="px-4 py-3 border-t border-[#f84429]">
                     {navItems.map(item => {

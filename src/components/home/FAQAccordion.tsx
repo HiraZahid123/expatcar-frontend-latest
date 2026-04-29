@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 interface FAQItem {
     question: string;
@@ -52,6 +53,8 @@ const faqs: FAQItem[] = [
 ];
 
 const FAQAccordion = () => {
+    const pathname = usePathname();
+    const isHome = pathname === '/';
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
@@ -86,10 +89,10 @@ const FAQAccordion = () => {
                         <AnimatePresence>
                             {isOpen && (
                                 <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
+                                    initial={isHome ? { height: 0, opacity: 0 } : { height: 'auto', opacity: 1 }}
                                     animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    exit={isHome ? { height: 0, opacity: 0 } : { height: 'auto', opacity: 1 }}
+                                    transition={isHome ? { duration: 0.3, ease: "easeInOut" } : { duration: 0 }}
                                 >
                                     <div className="px-6 pb-6 pt-0">
                                         <div className="h-px bg-gray-50 mb-6" />

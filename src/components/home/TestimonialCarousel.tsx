@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const testimonials = [
     {
@@ -52,6 +53,8 @@ const GoogleIcon = () => (
 );
 
 export default function TestimonialCarousel() {
+    const pathname = usePathname();
+    const isHome = pathname === '/';
     const [index, setIndex] = useState(0);
     const [perPage, setPerPage] = useState(3);
     const trackRef = useRef<HTMLDivElement>(null);
@@ -77,8 +80,11 @@ export default function TestimonialCarousel() {
             <div className="overflow-hidden">
                 <div
                     ref={trackRef}
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${index * cardWidth}%)` }}
+                    className="flex transition-transform ease-in-out"
+                    style={{ 
+                        transform: `translateX(-${index * cardWidth}%)`,
+                        transitionDuration: isHome ? '500ms' : '0ms'
+                    }}
                 >
                     {testimonials.map((t, i) => (
                         <div

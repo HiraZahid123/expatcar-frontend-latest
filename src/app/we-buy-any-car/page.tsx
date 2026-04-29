@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import ValuationForm from '@/components/valuation-form/ValuationForm';
 import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
+import PriceIncludedSection from '@/components/PriceIncludedSection';
 
 export const metadata: Metadata = {
     title: 'We Buy Any Car Dubai | Best Car Buyer in UAE',
@@ -106,21 +107,18 @@ export default function WeBuyAnyCarPage() {
                             
                             <div>
                                 <h2 className="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-tight">Our <span className="text-[#f24026]">Guarantees</span></h2>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
                                     {[
                                         'Simple and Easy Process',
                                         'Highest Price As Per Market',
                                         'No-Obligation Price Offer',
                                         'In House Documentation'
                                     ].map(g => (
-                                        <div key={g} className="flex items-center gap-3 font-bold text-gray-800">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-[#f24026] shadow-[0_0_10px_rgba(242,64,38,0.4)]" /> 
-                                            {g}
+                                        <div key={g} className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                                            <div className="w-3 h-3 rounded-full bg-[#f24026] shadow-[0_0_10px_rgba(242,64,38,0.4)]" /> 
+                                            <span className="font-bold text-gray-800">{g}</span>
                                         </div>
                                     ))}
-                                </div>
-                                <div className="mt-12 rounded-3xl overflow-hidden shadow-2xl border border-white/50">
-                                    <img src="/front/images/our-gurantee-right.webp" alt="Our Guarantee" className="w-full h-auto" />
                                 </div>
                             </div>
                         </div>
@@ -152,6 +150,45 @@ export default function WeBuyAnyCarPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ══════════════════════════════════════════════
+                PRICE INCLUDED (Red Block)
+            ══════════════════════════════════════════════ */}
+            <PriceIncludedSection />
+
+            {/* ══════════════════════════════════════════════
+                OUR GUARANTEES (4-Column Grid)
+            ══════════════════════════════════════════════ */}
+            <section className="py-24 bg-[#1a1a1a] text-white">
+                <div className="max-w-6xl mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tight">Our Guarantees</h2>
+                        <div className="w-24 h-1 bg-[#f24026] mx-auto rounded-full" />
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {[
+                            'A guaranteed quick and hassle-free sale',
+                            'Secure finance settlement',
+                            'On the spot cash in hand payment',
+                            'Safe, secure and trusted process',
+                            'All RTA paperwork taken care of for you',
+                            '0 hidden or unforeseen costs',
+                            'No obligation No pressure quote',
+                            'Free professional car inspection'
+                        ].map((item, idx) => (
+                            <div key={idx} className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                                <div className="flex-shrink-0 w-8 h-8 bg-[#f24026] rounded-full flex items-center justify-center">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.6666 5L7.49992 14.1667L3.33325 10" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p className="text-sm font-medium leading-relaxed">{item}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

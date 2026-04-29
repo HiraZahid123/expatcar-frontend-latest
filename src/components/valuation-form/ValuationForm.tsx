@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
+import { usePathname } from 'next/navigation';
 
 const formSchema = z.object({
     year: z.string().min(1, "Year is required"),
@@ -47,6 +48,8 @@ interface ValuationFormProps {
 }
 
 export default function ValuationForm({ initialMakeId, initialModelId }: ValuationFormProps) {
+    const pathname = usePathname();
+    const isHome = pathname === '/';
     const [step, setStep] = useState(1);
     const [years, setYears] = useState<number[]>([]);
     const [makes, setMakes] = useState<any[]>([]);
@@ -257,8 +260,9 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
             <div className="h-2 w-full bg-gray-100 flex">
                 <motion.div
                     className="h-full bg-[#f24026]"
-                    initial={{ width: "33.33%" }}
+                    initial={isHome ? { width: "33.33%" } : { width: step === 1 ? "33.33%" : step === 2 ? "66.66%" : "100%" }}
                     animate={{ width: step === 1 ? "33.33%" : step === 2 ? "66.66%" : "100%" }}
+                    transition={isHome ? { duration: 0.3 } : { duration: 0 }}
                 />
             </div>
 
@@ -283,9 +287,10 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                         {step === 1 && (
                             <motion.div
                                 key="step1"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
+                                initial={isHome ? { opacity: 0, x: 20 } : {}}
+                                animate={isHome ? { opacity: 1, x: 0 } : {}}
+                                exit={isHome ? { opacity: 0, x: -20 } : {}}
+                                transition={isHome ? { duration: 0.3 } : { duration: 0 }}
                                 className="space-y-4"
                             >
                                 <div className="grid grid-cols-2 gap-4">
@@ -350,9 +355,10 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                         {step === 2 && (
                             <motion.div
                                 key="step2"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
+                                initial={isHome ? { opacity: 0, x: 20 } : {}}
+                                animate={isHome ? { opacity: 1, x: 0 } : {}}
+                                exit={isHome ? { opacity: 0, x: -20 } : {}}
+                                transition={isHome ? { duration: 0.3 } : { duration: 0 }}
                                 className="space-y-6"
                             >
                                 <div className="space-y-2">
@@ -468,9 +474,10 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                         {step === 3 && (
                             <motion.div
                                 key="step3"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
+                                initial={isHome ? { opacity: 0, x: 20 } : {}}
+                                animate={isHome ? { opacity: 1, x: 0 } : {}}
+                                exit={isHome ? { opacity: 0, x: -20 } : {}}
+                                transition={isHome ? { duration: 0.3 } : { duration: 0 }}
                                 className="space-y-4"
                             >
                                 <div className="space-y-2">
