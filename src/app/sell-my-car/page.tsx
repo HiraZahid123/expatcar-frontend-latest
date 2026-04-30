@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
 import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
@@ -48,7 +48,7 @@ export default function SellMyCarDubaiPage() {
                             <h3 className="text-xl font-bold text-gray-900">Get Instant Cash Offer</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
-                        <ValuationForm />
+                        <ValuationFormServer />
                     </div>
                 </div>
             </section>

@@ -45,13 +45,25 @@ type FormData = z.infer<typeof formSchema>;
 interface ValuationFormProps {
     initialMakeId?: string;
     initialModelId?: string;
+    /** Server-provided years list — skips the /years fetch on mount */
+    initialYears?: number[];
+    /** Server-provided makes for initialLatestYear — pre-populates client cache */
+    initialMakes?: any[];
+    /** The year that initialMakes was fetched for */
+    initialLatestYear?: string;
 }
 
-export default function ValuationForm({ initialMakeId, initialModelId }: ValuationFormProps) {
+export default function ValuationForm({
+    initialMakeId,
+    initialModelId,
+    initialYears,
+    initialMakes,
+    initialLatestYear,
+}: ValuationFormProps) {
     const pathname = usePathname();
     const isHome = pathname === '/';
     const [step, setStep] = useState(1);
-    const [years, setYears] = useState<number[]>([]);
+    const [years, setYears] = useState<number[]>(initialYears ?? []);
     const [makes, setMakes] = useState<any[]>([]);
     const [models, setModels] = useState<any[]>([]);
     const [variants, setVariants] = useState<any[]>([]);
@@ -62,7 +74,12 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     const [copied, setCopied] = useState(false);
     const [utmData, setUtmData] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState({ makes: false, models: false, variants: false });
-    const cache = useRef<Record<string, any>>({});
+    // Pre-populate cache with server-fetched makes so the first year selection is instant
+    const cache = useRef<Record<string, any>>(
+        initialMakes?.length && initialLatestYear
+            ? { [`makes_${initialLatestYear}`]: initialMakes }
+            : {}
+    );
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -88,8 +105,9 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
     const selectedModel = watch('model_id');
 
     useEffect(() => {
-        fetchYears();
-        // Capture UTM params from URL on mount
+        // Skip network fetch when years were injected server-side
+        if (!initialYears?.length) fetchYears();
+
         const params = new URLSearchParams(window.location.search);
         const utm: Record<string, string> = {};
         ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(key => {
@@ -367,7 +385,8 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                     </label>
                                     <div className="grid grid-cols-2 gap-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                                         {[
-                                            "0 - 20,000",
+                                            "0 - 10,000",
+                                            "10,000 - 20,000",
                                             "20,000 - 40,000",
                                             "40,000 - 60,000",
                                             "60,000 - 90,000",
@@ -376,8 +395,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                                             "150,000 - 180,000",
                                             "180,000 - 220,000",
                                             "220,000 - 250,000",
-                                            "250,000 - 300,000",
-                                            "300,000+",
+                                            "250,000+",
                                         ].map((range) => (
                                             <button
                                                 key={range}

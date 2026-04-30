@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
-import FAQAccordion from '@/components/home/FAQAccordion';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
+import { ChevronDown } from 'lucide-react';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 import PriceIncludedSection from '@/components/PriceIncludedSection';
 
@@ -52,7 +52,7 @@ export default function AbuDhabiPage() {
                             <h3 className="text-xl font-bold text-gray-900">Get a Free Valuation</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
-                        <ValuationForm />
+                        <ValuationFormServer />
                     </div>
                 </div>
             </section>
@@ -130,21 +130,21 @@ export default function AbuDhabiPage() {
                     <div className="orangebg mb-20">
                         <div className="inrwekeepcontentwrap">
                             <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">How to Sell a Car in Abu Dhabi</h2>
-                            <div className="prose prose-lg text-white max-w-none space-y-6 mb-12">
+                            <div className="prose prose-lg text-gray-700 max-w-none space-y-6 mb-12">
                                 <p>
                                     With so many options, you need to stand out from the crowd of other sellers in Abu Dhabi who also sell similar cars. At the end of the day, you have to decide whether to sell privately or take the easiest route and accept a dealer&apos;s price. You can sell a car in Abu Dhabi privately in various ways. You might find several websites if you search &lsquo;sell car Abu Dhabi&rsquo; or &lsquo;sell my car Abu Dhabi&rsquo; online. You might post an advertisement on the noticeboard of the sports club or grocery store nearby. However, the most preferred way to car selling Abu Dhabi is by reaching out to a trusted platform that buys used cars. In this way, you might be able to sell your car in Abu Dhabi for a little bit more money than you would if you sold it to a dealer.
                                 </p>
                             </div>
 
                             <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">Cash Your Car in Abu Dhabi at the Right Price</h2>
-                            <div className="prose prose-lg text-white max-w-none space-y-6 mb-12">
+                            <div className="prose prose-lg text-gray-700 max-w-none space-y-6 mb-12">
                                 <p>
                                     You can look for &lsquo;cash car Abu Dhabi&rsquo; online to avail of the services of the most reputable used automobile dealership in the United Arab Emirates, Expat Car Buyers. If you want to cash your car Abu Dhabi, just schedule an appointment, and a representative will call you to help you sell your vehicle for the best price offer without leaving Abu Dhabi. Expat Car Buyers aims to provide you with the quickest, simplest, and most straightforward approach to finish the deal reasonably and on time. In the local and internet markets, It is the right place and your best bet if you&apos;re trying to sell any used cars, vehicles, or motors in Dubai. We are the only company in the market that will buy any car in any condition so that you can sell any car to us for a fast cash offer and a hassle-free process.
                                 </p>
                             </div>
 
                             <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">Why should I choose Expat Car Buyers to Sell my Car in Abu Dhabi?</h2>
-                            <div className="prose prose-lg text-white max-w-none space-y-6 mb-12">
+                            <div className="prose prose-lg text-gray-700 max-w-none space-y-6 mb-12">
                                 <p>
                                     Thanks to the straightforward selling process at Expat Car Buyers, you can always sell any car Abu Dhabi. We know that most auto sellers and purchasers give such cheap prices that you would rather keep the car than oversell it. We often offer the highest price on the market because we respect the seller&apos;s time and want to buy their car. Most people are rushing to sell their cars to a used car dealer in Abu Dhabi, so we provide quick money and a simple transfer process. Additionally, we can settle your mortgage with your bank or another lender.
                                 </p>
@@ -154,7 +154,7 @@ export default function AbuDhabiPage() {
                             </div>
 
                             <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">What Common Issues do you Face while Selling a Car in Abu Dhabi?</h2>
-                            <div className="prose prose-lg text-white max-w-none space-y-6">
+                            <div className="prose prose-lg text-gray-700 max-w-none space-y-6">
                                 <p>
                                     Although it&apos;s not an easy option, you can sell any car Abu Dhabi in a simpler way than you might have imagined. The good news is that you can sell your vehicle quickly and easily thanks to the available car buyer in Abu Dhabi. But that doesn&apos;t mean you should just pick one and start selling immediately without doing any research.
                                 </p>
@@ -284,7 +284,26 @@ export default function AbuDhabiPage() {
             <section className="py-24 bg-[#FCF5F2]">
                 <div className="max-w-4xl mx-auto px-4 md:px-8">
                     <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">Frequently Asked Questions</h2>
-                    <FAQAccordion />
+                    <div className="divide-y divide-gray-200 border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                        {[
+                            {
+                                q: 'How to sell a Dubai car in Abu Dhabi?',
+                                a: 'You can sell a Dubai car in Abu Dhabi privately or take the easy way out and accept the dealer\'s pricing, but either way you\'ll have to make a decision. In Abu Dhabi, there are many options for private sellers — consider putting up a flyer at a local gym or supermarket. However, the most popular option for selling a car in Abu Dhabi is to contact a reliable website that buys pre-owned vehicles. Selling your automobile privately in Abu Dhabi could get you a higher price than selling to a dealership would.',
+                            },
+                            {
+                                q: 'How to scrap a car in Abu Dhabi?',
+                                a: 'In Abu Dhabi and the surrounding area, Expat Car Buyers pay competitive prices for scrap automobiles. We are the go-to company for reliable services, which is why scrap auto sellers turn to us. The value of scrap metal is highly volatile, and we can help you scrap your car in Abu Dhabi at the optimal timing and price. If your vehicle breaks down or is totalled, you may trust us to negotiate the best possible settlement on your behalf.',
+                            },
+                        ].map(({ q, a }) => (
+                            <details key={q} className="group p-6">
+                                <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
+                                    <span className="font-bold text-gray-900">{q}</span>
+                                    <ChevronDown className="w-5 h-5 text-[#f24026] shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                                </summary>
+                                <p className="mt-4 text-gray-600 leading-relaxed">{a}</p>
+                            </details>
+                        ))}
+                    </div>
                 </div>
             </section>
         </main>

@@ -398,43 +398,34 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 .faq-answer { padding: 0 0 1.25rem; color: #626161; font-size: 0.9375rem; line-height: 1.7; }
 
 /* ─── Responsive helpers ─────────────────────────────────────── */
-/* ─── Orange SEO Section (Old Style) ─────────────────────────── */
+/* ─── SEO Content Section ─────────────────────────────────────── */
 .orangebg {
-  background-image: url('/front/images/orangebg.jpg');
-  background-size: cover;
-  background-position: center;
-  color: #fff !important;
-  border-radius: 22px;
-  padding: 40px 50px;
+  background: #FCF5F2;
+  border: 1px solid #FFD0C9;
+  border-radius: 2rem;
+  padding: 48px 52px;
 }
 
-.orangebg h2, 
-.orangebg h3, 
-.orangebg p, 
-.orangebg span,
-.orangebg div {
-  color: #fff !important;
+.orangebg h2 {
+  color: #f24026 !important;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #FFD0C9;
+  margin-bottom: 1.25rem;
+}
+
+.orangebg h3 {
+  color: #111827 !important;
+}
+
+.orangebg p {
+  color: #374151 !important;
+  line-height: 1.8;
+}
+
+.orangebg span {
+  color: inherit !important;
 }
 
 .inrwekeepcontentwrap {
-  max-height: 410px;
-  overflow-y: auto;
-  padding-right: 40px;
-}
-
-/* Custom White Scrollbar */
-.inrwekeepcontentwrap::-webkit-scrollbar {
-  width: 16px;
-}
-.inrwekeepcontentwrap::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background: #fff;
-  border: 7px solid #ff4316;
-}
-.inrwekeepcontentwrap::-webkit-scrollbar-thumb {
-  background: #fff;
-  border-radius: 10px;
-}
-.inrwekeepcontentwrap::-webkit-scrollbar-thumb:hover {
-  background: #f0f0f0;
+  padding-right: 0;
 }

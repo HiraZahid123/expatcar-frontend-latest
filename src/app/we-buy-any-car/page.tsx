@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
 import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 import PriceIncludedSection from '@/components/PriceIncludedSection';
@@ -54,7 +54,7 @@ export default function WeBuyAnyCarPage() {
                             <h3 className="text-xl font-bold text-gray-900">Get a Free Valuation</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
-                        <ValuationForm />
+                        <ValuationFormServer />
                     </div>
                 </div>
             </section>
@@ -88,8 +88,8 @@ export default function WeBuyAnyCarPage() {
                 <div className="max-w-6xl mx-auto px-4 md:px-8">
                     <div className="orangebg mb-20">
                         <div className="inrwekeepcontentwrap">
-                            <h2 className="text-3xl font-bold mb-6 uppercase tracking-wider">We Buy Any Car in <span className="text-white">Dubai</span></h2>
-                            <div className="prose prose-lg text-white max-w-none space-y-4 mb-10">
+                            <h2 className="text-3xl font-bold mb-6 uppercase tracking-wider">We Buy Any Car in <span className="text-[#f24026]">Dubai</span></h2>
+                            <div className="prose prose-lg text-gray-700 max-w-none space-y-4 mb-10">
                                 <p>
                                     As we provide the best car selling services in Dubai, we make sure to keep the car buying deal professional and negotiable enough for both parties to agree. Most importantly we make sure that your cash is ready as soon as the deal is being made.
                                 </p>

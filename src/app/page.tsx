@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
 import FAQAccordion from '@/components/home/FAQAccordion';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
@@ -126,7 +126,7 @@ export default function Home() {
                             Looking to sell your car in <span className="font-bold text-gray-900">Sharjah or Abu Dhabi</span> quickly and without hassle? We make it incredibly easy to sell any car online — from the comfort of your home or office. Get an instant valuation today!
                         </p>
                         <div className="bg-white rounded-[2rem] shadow-2xl p-4 md:p-6 max-w-2xl mx-auto border border-gray-100">
-                            <ValuationForm />
+                            <ValuationFormServer />
                         </div>
                     </div>
                 </div>

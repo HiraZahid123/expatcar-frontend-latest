@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
-import FAQAccordion from '@/components/home/FAQAccordion';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
 export const metadata: Metadata = {
@@ -39,9 +38,9 @@ export default function EvaluatePage() {
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[75%] bg-[#FFD0C9]/40 rounded-[50%_50%_40%_60%] -z-5" />
                             
                             <img
-                                src="/front/images/Jaguar-Premium.png" 
+                                src="/front/images/evaluate-sports-car.png"
                                 alt="Evaluate My Car UAE"
-                                className="w-full h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.3)] relative z-10 scale-125"
+                                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 scale-110 rounded-2xl"
                             />
                         </div>
                     </div>
@@ -51,7 +50,7 @@ export default function EvaluatePage() {
                             <h3 className="text-xl font-bold text-gray-900">Start Free Valuation</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
-                        <ValuationForm />
+                        <ValuationFormServer />
                     </div>
                 </div>
             </section>
@@ -186,15 +185,6 @@ export default function EvaluatePage() {
                             <li>Headache free sale. We take all the stress out of the process.</li>
                         </ul>
                     </div>
-                </div>
-            </section>
-            {/* ══════════════════════════════════════════════
-                FAQ SECTION
-            ══════════════════════════════════════════════ */}
-            <section className="py-24 bg-[#FCF5F2]">
-                <div className="max-w-4xl mx-auto px-4 md:px-8">
-                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">Frequently Asked Questions</h2>
-                    <FAQAccordion />
                 </div>
             </section>
         </main>

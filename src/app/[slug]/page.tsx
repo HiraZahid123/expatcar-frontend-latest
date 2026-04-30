@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { redirect, notFound } from 'next/navigation';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
 import { ShieldCheck, Zap, Banknote, MapPin, ChevronRight, Star, Info } from 'lucide-react';
 import { serverFetch } from '@/lib/serverApi';
 
@@ -144,7 +144,7 @@ export default async function DynamicCarPage({
                             <div className="flex-1 w-full max-w-lg">
                                 <div className="relative">
                                     <div className="absolute -inset-4 bg-[#FFD0C9]/50 rounded-[3rem] blur-2xl -z-10" />
-                                    <ValuationForm
+                                    <ValuationFormServer
                                         initialMakeId={type !== 'location' ? make.id.toString() : undefined}
                                         initialModelId={type === 'model' ? model.id.toString() : undefined}
                                     />

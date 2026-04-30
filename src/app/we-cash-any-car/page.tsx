@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 
 export const metadata: Metadata = {
@@ -47,7 +47,7 @@ export default function WeCashAnyCarPage() {
                             <h3 className="text-xl font-bold text-gray-900">Cash Your Car Now</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
-                        <ValuationForm />
+                        <ValuationFormServer />
                     </div>
                 </div>
             </section>

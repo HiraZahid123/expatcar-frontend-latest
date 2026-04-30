@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import ValuationForm from '@/components/valuation-form/ValuationForm';
-import FAQAccordion from '@/components/home/FAQAccordion';
+import ValuationFormServer from '@/components/valuation-form/ValuationFormServer';
+import { ChevronDown } from 'lucide-react';
 import TestimonialCarousel from '@/components/home/TestimonialCarousel';
 import PriceIncludedSection from '@/components/PriceIncludedSection';
 
@@ -40,9 +40,9 @@ export default function SharjahPage() {
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[75%] bg-[#FFD0C9]/40 rounded-[50%_50%_40%_60%] -z-5" />
                             
                             <img
-                                src="/front/images/X6.webp" 
+                                src="/front/images/sharjah-sports-car.png"
                                 alt="Sell My Car Sharjah"
-                                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 scale-110"
+                                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 scale-110 rounded-2xl"
                             />
                         </div>
                     </div>
@@ -52,7 +52,7 @@ export default function SharjahPage() {
                             <h3 className="text-xl font-bold text-gray-900">Get a Free Valuation</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>
                         </div>
-                        <ValuationForm />
+                        <ValuationFormServer />
                     </div>
                 </div>
             </section>
@@ -90,7 +90,7 @@ export default function SharjahPage() {
                     <div className="orangebg mb-20">
                         <div className="inrwekeepcontentwrap">
                             <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">How to Sell Car in Sharjah</h2>
-                            <div className="prose prose-lg text-white max-w-none space-y-6 mb-12">
+                            <div className="prose prose-lg text-gray-700 max-w-none space-y-6 mb-12">
                                 <p>
                                     Are you looking to sell your car in Sharjah? Expat Car Buyers can help make the process quick and hassle-free. As one of the leading car buyers in Sharjah, we offer a seamless and transparent process to help you sell your car.
                                 </p>
@@ -103,7 +103,7 @@ export default function SharjahPage() {
                             </div>
 
                             <h2 className="text-3xl font-bold mb-8 uppercase tracking-wider">Sell Car in Sharjah at the right price</h2>
-                            <div className="prose prose-lg text-white max-w-none space-y-6">
+                            <div className="prose prose-lg text-gray-700 max-w-none space-y-6">
                                 <p>
                                     Selling your car in Sharjah can be a daunting task, especially if you&apos;re not sure how to get the best price. At Expat Car Buyers, we understand that getting the right price for your car is important, which is why we offer a hassle-free and transparent process to help you sell your car in Sharjah.
                                 </p>
@@ -216,7 +216,38 @@ export default function SharjahPage() {
             <section className="py-24 bg-[#FCF5F2]">
                 <div className="max-w-4xl mx-auto px-4 md:px-8">
                     <h2 className="text-3xl font-bold text-center text-gray-900 mb-16 uppercase tracking-wider">Frequently Asked Questions</h2>
-                    <FAQAccordion />
+                    <div className="divide-y divide-gray-200 border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                        {[
+                            {
+                                q: 'How do I transfer ownership of a car in Sharjah?',
+                                a: 'To transfer ownership, provide the original number plate and Emirates ID (original for the seller, photocopy for the buyer). The old owner clears any outstanding fines and provides documents to an official who cancels the plate and issues a "Transfer Certificate" or "Hayaza" (costs approximately AED 450). The new document lists both parties\' names, then the buyer registers the vehicle in their name.',
+                            },
+                            {
+                                q: 'What is the easiest way to sell a car in Sharjah?',
+                                a: 'The easiest and most efficient way to sell your car in Sharjah is to get in touch with Expat Car Buyers. We schedule convenient appointments, offer a professional service, and provide cash for your car irrespective of your location in Sharjah.',
+                            },
+                            {
+                                q: 'Can I authorize someone to sell my car in Sharjah?',
+                                a: 'Yes, by obtaining a letter of authorization (Power of Attorney) from the registered owner. Payment and transaction details must match the owner\'s name on the car\'s title.',
+                            },
+                            {
+                                q: 'Why should I choose Expat Car Buyers to sell my car in Sharjah?',
+                                a: 'Expat Car Buyers provides a hassle-free, safe, and secure platform with expert knowledge of local markets. We handle all paperwork, offer free valuations, ensure competitive pricing, and manage the ownership transfer smoothly from start to finish.',
+                            },
+                            {
+                                q: 'What are the common issues you face while selling a car in Sharjah?',
+                                a: 'Common challenges include finding trustworthy dealers, time-consuming processes such as advertising, viewings and negotiations, and private sale risks like fraud and scams. Expat Car Buyers eliminates all of these by handling all paperwork and providing fully secure transactions.',
+                            },
+                        ].map(({ q, a }) => (
+                            <details key={q} className="group p-6">
+                                <summary className="flex items-center justify-between cursor-pointer list-none gap-4">
+                                    <span className="font-bold text-gray-900">{q}</span>
+                                    <ChevronDown className="w-5 h-5 text-[#f24026] shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                                </summary>
+                                <p className="mt-4 text-gray-600 leading-relaxed">{a}</p>
+                            </details>
+                        ))}
+                    </div>
                 </div>
             </section>
         </main>
