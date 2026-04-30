@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
   background: #fff;
   display: flex;
   align-items: center;
-  padding: 80px 0 120px;
+  padding: 40px 0 100px;
   overflow: hidden;
 }
 
@@ -80,9 +80,9 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -105,9 +105,9 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
   flex: 0 0 450px;
   background: #ffffff;
   border-radius: 30px;
-  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.12);
-  padding: 30px;
-  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  padding: 40px;
+  border: 1px solid rgba(242,64,38,0.05);
 }
 
 @keyframes hero-pan {

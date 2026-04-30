@@ -34,15 +34,15 @@ export default function SharjahPage() {
                             </p>
                         </div>
                         
-                        <div className="relative mt-8 md:mt-0">
+                        <div className="hidden lg:block relative mt-12 max-w-lg">
                             {/* Static Premium Background */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[75%] bg-[#FFD0C9]/40 rounded-[50%_50%_40%_60%] -z-5" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[80%] bg-[#FFD0C9]/30 rounded-[50%_50%_40%_60%] -z-5" />
                             
                             <img
-                                src="/front/images/sharjah-sports-car.png"
+                                src="/front/images/sharjah-sports-car.png" 
                                 alt="Sell My Car Sharjah"
-                                className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] relative z-10 scale-110 rounded-2xl"
+                                className="w-full h-auto drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)] relative z-10"
                             />
                         </div>
                     </div>
