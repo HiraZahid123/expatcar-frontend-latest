@@ -130,7 +130,11 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-
+                <div className="hero-car-strip">
+                    <img className="car" src="/front/images/car.svg" loading="lazy" alt="car" />
+                    <div id="moving-type-left"><div className="circle1" /></div>
+                    <div id="moving-type-right"><div className="circle2" /></div>
+                </div>
             </section>
 
             {/* ══════════════════════════════════════════════

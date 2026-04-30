@@ -45,7 +45,8 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 .hero-section {
   position: relative;
   min-height: 620px;
-  background: #fff;
+  background: url('/front/images/Header-Img.svg') bottom left repeat-x #fff;
+  animation: hero-pan 12s linear infinite;
   display: flex;
   align-items: center;
   padding: 60px 0 180px;
