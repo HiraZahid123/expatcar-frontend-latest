@@ -24,7 +24,7 @@ export default function RootLayout({
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
                 <link rel="stylesheet" href="/font-awesome/css/all.min.css" />
             </head>
-            <body className="antialiased">
+            <body className="antialiased" suppressHydrationWarning>
                 <Providers>
                     <Header />
                     <main>

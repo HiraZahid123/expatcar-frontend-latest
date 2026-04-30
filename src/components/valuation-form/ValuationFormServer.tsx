@@ -10,6 +10,7 @@ interface PreloadData {
     years: number[];
     latest_year: string | null;
     makes: any[];
+    top_models?: Record<string, any[]>;
 }
 
 export default async function ValuationFormServer({ initialMakeId, initialModelId }: Props) {
@@ -29,6 +30,7 @@ export default async function ValuationFormServer({ initialMakeId, initialModelI
             initialYears={preload?.years}
             initialMakes={preload?.makes}
             initialLatestYear={preload?.latest_year ?? undefined}
+            initialTopModels={preload?.top_models}
         />
     );
 }
