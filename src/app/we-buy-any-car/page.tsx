@@ -34,17 +34,17 @@ export default function WeBuyAnyCarPage() {
                             </p>
                         </div>
                         
-                        <div className="relative">
-                            {/* Background Blob */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#f24026]/10 rounded-full blur-[100px] -z-10" />
+                        <div className="hidden lg:block relative mt-12 max-w-lg">
+                            {/* Background Blobs */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#f24026]/5 rounded-full blur-[100px] -z-10" />
                             <div 
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-[#FFD0C9]/40 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] -z-5" 
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[80%] bg-[#FFD0C9]/30 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] -z-5" 
                             />
                             
                             <img
                                 src="/front/images/X1.webp" 
                                 alt="We Buy Any Car Dubai"
-                                className="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.2)] relative z-10 scale-110"
+                                className="w-full h-auto drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)] relative z-10"
                             />
                         </div>
                     </div>
