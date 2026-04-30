@@ -21,7 +21,7 @@ export default function WeBuyAnyCarPage() {
                 
                 <div className="landing-hero-container">
                     <div className="landing-hero-content relative">
-                        <div className="wow fadeInLeft" data-wow-delay="0.1s">
+                        <div>
                             <span className="text-[#f24026] font-bold text-sm uppercase tracking-widest mb-4 block">
                                 Trusted Car Buying Service
                             </span>
@@ -34,12 +34,11 @@ export default function WeBuyAnyCarPage() {
                             </p>
                         </div>
                         
-                        <div className="wow fadeInLeft relative" data-wow-delay="0.3s">
+                        <div className="relative">
                             {/* Background Blob */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#f24026]/10 rounded-full blur-[100px] -z-10 animate-pulse" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-[#f24026]/10 rounded-full blur-[100px] -z-10" />
                             <div 
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-[#FFD0C9]/40 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] -z-5" 
-                                style={{ animation: 'blob-morph 10s ease-in-out infinite' }}
                             />
                             
                             <img
@@ -50,7 +49,7 @@ export default function WeBuyAnyCarPage() {
                         </div>
                     </div>
 
-                    <div className="landing-hero-form wow fadeInRight" data-wow-delay="0.2s">
+                    <div className="landing-hero-form">
                         <div className="text-center mb-6">
                             <h3 className="text-xl font-bold text-gray-900">Get a Free Valuation</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>

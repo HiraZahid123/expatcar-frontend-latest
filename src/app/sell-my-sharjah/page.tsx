@@ -21,7 +21,7 @@ export default function SharjahPage() {
                 
                 <div className="landing-hero-container">
                     <div className="landing-hero-content relative">
-                        <div className="wow fadeInLeft" data-wow-delay="0.1s">
+                        <div>
                             <span className="text-[#f24026] font-bold text-sm uppercase tracking-widest mb-4 block">
                                 Sell Fast in Sharjah
                             </span>
@@ -34,7 +34,7 @@ export default function SharjahPage() {
                             </p>
                         </div>
                         
-                        <div className="relative mt-8 md:mt-0 wow zoomIn" data-wow-delay="0.3s">
+                        <div className="relative mt-8 md:mt-0">
                             {/* Static Premium Background */}
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#f24026]/5 rounded-full blur-3xl -z-10" />
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[75%] bg-[#FFD0C9]/40 rounded-[50%_50%_40%_60%] -z-5" />
@@ -47,7 +47,7 @@ export default function SharjahPage() {
                         </div>
                     </div>
 
-                    <div className="landing-hero-form wow fadeInRight" data-wow-delay="0.2s">
+                    <div className="landing-hero-form">
                         <div className="text-center mb-6">
                             <h3 className="text-xl font-bold text-gray-900">Get a Free Valuation</h3>
                             <p className="text-sm text-gray-500">Takes less than 1 minute</p>

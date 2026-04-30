@@ -277,7 +277,7 @@ export default function ValuationForm({ initialMakeId, initialModelId }: Valuati
                 </header>
 
                 {error && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm font-medium animate-in fade-in slide-in-from-top-2">
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm font-medium">
                         {error}
                     </div>
                 )}
