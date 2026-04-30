@@ -18,9 +18,7 @@ import {
     Search,
     Copy,
     ClipboardCheck,
-    Clock,
-    Zap,
-    Star
+    Clock
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
@@ -33,8 +31,7 @@ const formSchema = z.object({
     variant_id: z.string().min(1, "Variant is required"),
     mileage: z.string().min(1, "Mileage is required"),
     specs: z.string().min(1, "Regional spec is required"),
-    car_option: z.string().min(1, "Car option is required"),
-    paint_condition: z.string().min(1, "Paint condition is required"),
+
     name: z.string().min(2, "Name is required"),
     phone: z.string().min(8, "Phone is required"),
     email: z.string().email("Valid email is required"),
@@ -90,8 +87,7 @@ export default function ValuationForm({
             variant_id: "",
             mileage: "",
             specs: "GCC",
-            car_option: "Basic",
-            paint_condition: "Original Paint",
+
             name: "",
             phone: "",
             email: "",
@@ -439,53 +435,7 @@ export default function ValuationForm({
                                     {errors.specs && <p className="text-xs text-red-500">{errors.specs.message}</p>}
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-800 font-bold flex items-center gap-2">
-                                        <Zap className="w-4 h-4 text-[#f24026]" /> Car Option
-                                    </label>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {['Basic', 'Mid Option', 'Full Option', 'I don\'t know'].map((opt) => (
-                                            <button
-                                                key={opt}
-                                                type="button"
-                                                onClick={() => setValue('car_option', opt)}
-                                                className={cn(
-                                                    "py-2 px-3 rounded-xl border-2 transition font-bold text-[10px] sm:text-xs",
-                                                    watch('car_option') === opt 
-                                                        ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
-                                                        : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
-                                                )}
-                                            >
-                                                {opt}
-                                            </button>
-                                        ))}
-                                    </div>
-                                    {errors.car_option && <p className="text-xs text-red-500">{errors.car_option.message}</p>}
-                                </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-800 font-bold flex items-center gap-2">
-                                        <Star className="w-4 h-4 text-[#f24026]" /> Paint Condition
-                                    </label>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {['Original Paint', 'Partial Repaint', 'Total Repaint', 'I don\'t know'].map((p) => (
-                                            <button
-                                                key={p}
-                                                type="button"
-                                                onClick={() => setValue('paint_condition', p)}
-                                                className={cn(
-                                                    "py-2 px-3 rounded-xl border-2 transition font-bold text-[10px] sm:text-xs",
-                                                    watch('paint_condition') === p 
-                                                        ? "border-[#f24026] bg-[#f24026]/5 text-[#f24026]" 
-                                                        : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
-                                                )}
-                                            >
-                                                {p}
-                                            </button>
-                                        ))}
-                                    </div>
-                                    {errors.paint_condition && <p className="text-xs text-red-500">{errors.paint_condition.message}</p>}
-                                </div>
                             </motion.div>
                         )}
 
